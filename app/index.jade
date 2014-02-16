@@ -32,7 +32,11 @@ html.no-js
         | browser. Please
         a(href='http://browsehappy.com/') upgrade your browser
         | to improve your experience.
-    // Add your site or application content here
+    
+    section.section-alerts
+      .alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)')
+        p {{alert.msg}}
+    
     .container(ng-view='')
 
     .footer
@@ -59,5 +63,6 @@ html.no-js
     script(src='scripts/controllers/result.js')
     script(src='scripts/services/api.js')
     script(src='scripts/services/user.js')
+    script(src='scripts/services/alert.js')
     script(src='scripts/directives/pj-slider.js')
     // endbuild

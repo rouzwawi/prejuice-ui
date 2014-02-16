@@ -19,8 +19,7 @@ div(ng-show='isLoggedIn')
   .row(ng-show='quizStarted')
     .question
       h3 {{activeQuestion.question}}
-      p {{activeAnswerValue}}
+      p {{activeAnswerValue}} 
       input(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
       p
         button(ng-click='goToNextQuestion()') Next!
-

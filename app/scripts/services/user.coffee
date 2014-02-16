@@ -1,17 +1,15 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .service 'User', ['$rootScope', '$resource', 'API', ($rootScope, $resource, API) ->
+  .service 'User', ['$rootScope', '$resource', 'API', 'Alert', ($rootScope, $resource, API, Alert) ->
     
     $rootScope.isLoggedIn = false
     
-    @userId = API.userToken.get (obj, success, err)->
-      if(err?)
-        console.log 'Error'
-        console.log err
-      else
-        $rootScope.isLoggedIn = true
+    user = API.userToken.get (res)->
+      $rootScope.isLoggedIn = true
+    , (err)->
+      Alert.add 'error', err.message
     
-    getUserId: ()=>
-      return @userId
+    getUserToken: ()=>
+      return user.userToken
   ]
