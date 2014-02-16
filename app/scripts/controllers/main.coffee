@@ -27,6 +27,27 @@ angular.module('prejuiceUiApp')
         question: 'Are you doing what you believe in, or are you settling for what you are doing?'
       ]
 
-    $scope.q = API.questions.get ->
+    API.answers.save
+      userToken:"blebelelbe"
+      answers: [
+          questionId:1
+          value:55
+        ,
+          questionId:2
+          value:77
+      ]
+
+    $scope.q = API.hello.get ->
       console.log $scope.q
+
+    $scope.postAnswers = (answers) ->
+      API.answers.save
+        userToken:"blebelelbe"
+        answers: [
+            questionId:1
+            value:55
+          ,
+            questionId:2
+            value:77
+        ]
   ]

@@ -4,7 +4,17 @@ angular.module('prejuiceUiApp')
   .service 'API', ['$resource', ($resource) ->
     #return $resource('/api/questions/:id',
 
-    questions: $resource '/api'
+    hello: $resource '/api'
+
+    questions: $resource '/api/questions'
+
+
+    ###
+      {
+        userToken: <string>
+      }
+    ###
+    userToken: $resource '/api/token'
 
     ###
       {
