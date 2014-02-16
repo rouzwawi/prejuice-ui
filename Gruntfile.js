@@ -72,7 +72,6 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
@@ -99,17 +98,14 @@ module.exports = function (grunt) {
         },
         proxies: [
             {
-                context: '/api',
+                context: ['/api'],
                 host: 'localhost',
                 port: 8080,
                 https: false,
                 changeOrigin: false,
                 xforward: false,
-                headers: {
-                    "x-custom-added-header": "N/A"
-                },
                 rewrite: {
-                  '^/api': '/',
+                  '^/api': '',
                 }
             }
         ]

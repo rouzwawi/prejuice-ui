@@ -26,4 +26,7 @@ angular.module('prejuiceUiApp')
         id: 7
         question: 'Are you doing what you believe in, or are you settling for what you are doing?'
       ]
+
+    $scope.q = API.questions.get ->
+      console.log $scope.q
   ]
