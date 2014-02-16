@@ -7,8 +7,7 @@ angular.module('prejuiceUiApp')
     hello: $resource '/api'
 
     questions: $resource '/api/questions'
-
-
+    
     ###
       {
         userToken: <string>

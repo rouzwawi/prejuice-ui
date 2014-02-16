@@ -11,5 +11,8 @@ angular.module('prejuiceUiApp', [
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/result/:userId',
+        templateUrl: 'views/result.html'
+        controller: 'ResultCtrl'
       .otherwise
         redirectTo: '/'
