@@ -6,8 +6,23 @@ angular.module('prejuiceUiApp')
 
     hello: $resource '/api'
 
+    ###
+      {
+        questions: [
+          {
+            question: "How old would you be if you didn’t know how old you are?",
+            id: "1"
+          },
+          {
+            question: "Which is worse, failing or never trying?",
+            id: "2"
+          },
+          ...
+        ]
+      }
+    ###
     questions: $resource '/api/questions'
-    
+
     ###
       {
         userToken: <string>
