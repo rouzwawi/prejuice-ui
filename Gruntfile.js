@@ -14,6 +14,8 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -48,6 +50,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/}*.jade',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -70,7 +73,20 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.app %>'
           ]
-        }
+        },
+        proxies: [
+            {
+                context: '/api',
+                host: 'localhost',
+                port: 8080,
+                https: false,
+                changeOrigin: false,
+                xforward: false,
+                headers: {
+                    "x-custom-added-header": "N/A"
+                }
+            }
+        ]
       },
       test: {
         options: {
@@ -88,6 +104,28 @@ module.exports = function (grunt) {
         }
       }
     },
+    
+    jade: {
+      livereload: {
+        files: grunt.file.expandMapping(['**/*.jade'], '.tmp/', {
+          expand: true,
+          cwd: "app",
+          ext: '.html'
+        })
+      },
+      dist: {
+        options: {
+          pretty: true
+        },
+        files: grunt.file.expandMapping(['**/*.jade'], 'dist/', {
+          expand: true,
+          cwd: "app",
+          ext: '.html'
+        })
+      }
+    },
+    
+    
 
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
@@ -133,7 +171,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     'bower-install': {
       app: {
-        html: '<%= yeoman.app %>/index.html',
+        html: '.tmp/index.html',
         ignorePath: '<%= yeoman.app %>/'
       }
     },
@@ -379,6 +417,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'jade:livereload',
       'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -402,6 +441,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'jade:dist',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
