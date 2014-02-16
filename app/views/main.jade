@@ -9,17 +9,34 @@
   h3.text-muted prejuice ui
 
 div(ng-show='quizReadyToStart')
-  .jumbotron(ng-hide='quizStarted')
-    h1 'Prejuice!
-    p.lead
-      | Are you ready?
-    p
-      a.btn.btn-lg.btn-success(ng-click='startQuiz()') Yeah!
+  div(ng-switch='quizState')
 
-  .row(ng-show='quizStarted')
-    .question
-      h3 {{activeQuestion.question}}
-      p {{activeAnswerValue}} 
-      input(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
-      p
-        button(ng-click='goToNextQuestion()') Next!
+    .row(ng-switch-when='ready')
+      .jumbotron
+        h1 Prejuice!
+        p.lead
+          | Are you ready?
+        p
+          a.btn.btn-lg.btn-success(ng-click='startQuiz()') Yeah!
+
+    .row(ng-switch-when='question')
+      .question
+        h3 {{activeQuestion.question}}
+        p {{activeAnswerValue}} 
+        input(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
+        p
+          button(ng-click='answerQuestion()') Answer
+      
+    .row(ng-switch-when='post-question')
+      .post-question
+        h3 Post question
+        p
+          button(ng-click='nextQuestion()') Next
+      
+    .row(ng-switch-when='completed')
+      .jumbotron
+        h1 Good Job!
+        p.lead
+          | Ready for the results?
+        p
+          a.btn.btn-lg.btn-success(ng-click='showResult()') Let me see!

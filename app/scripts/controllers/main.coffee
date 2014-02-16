@@ -4,9 +4,9 @@ angular.module('prejuiceUiApp')
   .controller 'MainCtrl', ['$scope', '$location', 'User', 'API', 'Alert', ($scope, $location, User, API, Alert) ->
     
     $scope.quizReadyToStart = false
-    $scope.quizStarted = false
     $scope.activeQuestion = null
     $scope.activeAnswerValue = 0
+    $scope.quizState = 'ready'
     
     activeQuestionIndex = -1
     
@@ -29,30 +29,38 @@ angular.module('prejuiceUiApp')
       $scope.activeAnswerValue = 0
       if activeQuestionIndex < questions.length
         #go to next question
+        $scope.quizState = 'question'
         $scope.activeQuestion = questions[activeQuestionIndex]
       else
         #go to end
         endQuiz()
         
+    showPostQuestion = ()->
+      $scope.quizState = 'post-question'
+      
     endQuiz = ()->
       API.answers.save
         userToken: User.getUserToken()
         answers: answers
       , (res)->
-        $location.path('result/' + User.getUserToken());
+        $scope.quizState = 'completed'
       , (err)->
         Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
     $scope.startQuiz = ()->
       answers = {}
-      $scope.quizStarted = true
       activeQuestionIndex = -1
       $scope.activeAnswerValue = 0
       nextQuestion()
       
-    $scope.goToNextQuestion = ()->
+    $scope.answerQuestion = ()->
       saveCurrentQuestionAnswer()
-      nextQuestion()
+      showPostQuestion()
+      
+    $scope.nextQuestion = nextQuestion
+    
+    $scope.showResult = ()->
+      $location.path('result/' + User.getUserToken());
       
     $scope.onQuestionSliderValueUpdated = (val)->
       $scope.$apply ()->
