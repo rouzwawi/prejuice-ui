@@ -15,12 +15,10 @@ html.no-js
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
     // Place favicon.ico and apple-touch-icon.png in the root directory
-    // build:css styles/vendor.css
     // bower:css
     link(rel='stylesheet', href='bower_components/sass-bootstrap/dist/css/bootstrap.css')
-    link(rel='stylesheet', href='bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css')
+    link(rel='stylesheet', href='bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css')
     // endbower
-    // endbuild
     // build:css({.tmp,app}) styles/main.css
     link(rel='stylesheet', href='styles/main.css')
     // endbuild
@@ -45,7 +43,8 @@ html.no-js
     //if lt IE 9
       script(src='bower_components/es5-shim/es5-shim.js')
       script(src='bower_components/json3/lib/json3.min.js')
-    // build:js scripts/vendor.js
+    // TODO: remove {.tmp,app} and user bower-install in grunt file
+    // build:js({.tmp,app}) scripts/vendor.js
     // bower:js
     script(src='bower_components/jquery/jquery.js')
     script(src='bower_components/angular/angular.js')
