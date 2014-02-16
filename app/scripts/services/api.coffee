@@ -19,11 +19,9 @@ angular.module('prejuiceUiApp')
     ###
       {
         userToken: <string>,
-        answers: [
-          {
-            questionId: <int>
-            value: <int>
-          },
+        answers: {
+          <int>: <int>,
+          <int>: <int>,
           ...
         ]
       }

@@ -29,13 +29,9 @@ angular.module('prejuiceUiApp')
 
     API.answers.save
       userToken:"blebelelbe"
-      answers: [
-          questionId:1
-          value:55
-        ,
-          questionId:2
-          value:77
-      ]
+      answers:
+        1: 12
+        2: 23
 
     $scope.q = API.hello.get ->
       console.log $scope.q
