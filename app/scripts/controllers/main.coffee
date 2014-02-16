@@ -8,7 +8,7 @@ angular.module('prejuiceUiApp')
       'Karma'
     ]
     
-    q = API.Questions.get(
+    q = API.questions.get(
       questionId: 123
     , ()->
       console.log q
