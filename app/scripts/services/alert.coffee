@@ -13,7 +13,7 @@ angular.module('prejuiceUiApp')
       if $rootScope.$$phase != '$apply' && $rootScope.$$phase != '$digest'
         $rootScope.$apply()
     
-    add: (type, msg)->
+    add = (type, msg)->
       alert =
         type: type
         msg: msg
@@ -28,6 +28,11 @@ angular.module('prejuiceUiApp')
               self.closeAlertIndex i
               break
         , infoAutocloseTime)
+    
+    addGenericError: (code)->
+      add 'error', 'Ooops!... (code ' + code + ')'
+    
+    add: add
 
     closeAlert: (index) ->
       self.closeAlertIndex index

@@ -34,7 +34,7 @@ html.no-js
         | to improve your experience.
     
     section.section-alerts
-      .alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)')
+      .alert.alert-danger(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)')
         p {{alert.msg}}
     
     .container(ng-view='')

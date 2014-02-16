@@ -7,8 +7,9 @@ angular.module('prejuiceUiApp')
     
     user = API.userToken.get (res)->
       $rootScope.isLoggedIn = true
+      $rootScope.$broadcast 'LOGGED_IN'
     , (err)->
-      Alert.add 'error', err.message
+      Alert.add 'error', 'Could not login (' + err.status + ')'
     
     getUserToken: ()=>
       return user.userToken

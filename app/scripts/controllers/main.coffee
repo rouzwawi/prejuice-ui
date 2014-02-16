@@ -1,23 +1,24 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .controller 'MainCtrl', ['$scope', '$location', 'User', 'API', ($scope, $location, User, API) ->
+  .controller 'MainCtrl', ['$scope', '$location', 'User', 'API', 'Alert', ($scope, $location, User, API, Alert) ->
     
-    activeQuestionIndex = -1
-    
-    answers = {}
-    
-    questions = null
-    
-    questionsObj = API.questions.get (res)->
-      questions = questionsObj.questions
-    , (err)->
-      Alert.add 'error', err.message
-      console.log err
-    
+    $scope.quizReadyToStart = false
     $scope.quizStarted = false
     $scope.activeQuestion = null
     $scope.activeAnswerValue = 0
+    
+    activeQuestionIndex = -1
+    
+    questions = {}
+    answers = {}
+    
+    $scope.$on 'LOGGED_IN', ()->
+      questionsObj = API.questions.get (res)->
+        questions = questionsObj.questions
+        $scope.quizReadyToStart = true
+      , (err)->
+        Alert.add 'error', 'Could not get questions (' + err.status + ')'  
     
     saveCurrentQuestionAnswer = ()->
       if $scope.activeQuestion?
@@ -37,12 +38,10 @@ angular.module('prejuiceUiApp')
       API.answers.save
         userToken: User.getUserToken()
         answers: answers
-      , (obj, success, err)->
-        if (err?)
-          console.log 'Error'
-          console.log err
-        else
-          $location.path('result/' + User.getUserToken());
+      , (res)->
+        $location.path('result/' + User.getUserToken());
+      , (err)->
+        Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
     $scope.startQuiz = ()->
       answers = {}
