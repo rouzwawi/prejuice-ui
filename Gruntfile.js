@@ -102,10 +102,7 @@ module.exports = function (grunt) {
                 port: 8080,
                 https: false,
                 changeOrigin: false,
-                xforward: false,
-                rewrite: {
-                  '^/api': '',
-                }
+                xforward: false
             }
         ]
       },

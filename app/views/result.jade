@@ -5,3 +5,5 @@
 div
   ul(ng-repeat='(id, answer) in answers')
     li {{id}} - {{answer}}
+  p
+    canvas(chart, type='Pie', options='options', data='chart', width='300', height='300')

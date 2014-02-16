@@ -4,7 +4,8 @@ angular.module('prejuiceUiApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'angles'
 ])
   .config ($routeProvider) ->
     $routeProvider

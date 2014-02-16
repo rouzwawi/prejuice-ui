@@ -15,6 +15,43 @@ body {
     padding-bottom: 20px;
 }
 
+.header {
+  display:none;
+}
+
+.center {
+  text-align: center;
+}
+
+.prejuice .dark-border {
+  border-bottom-color: #cccccc;
+}
+
+.question h3, .post-question h3 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question .btn, .post-question .btn {
+  margin: 20px 0px;
+}
+
+.slider {
+  width: 90%;
+}
+
+.prejuice .slider.slider-horizontal .slider-handle {
+  margin-left: -20px;
+  margin-top: -15px;
+}
+
+.slider .slider-handle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

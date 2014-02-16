@@ -1,13 +1,3 @@
-.header
-  ul.nav.nav-pills.pull-right
-    li.active
-      a(ng-href='#') Home
-    li
-      a(ng-href='#') About
-    li
-      a(ng-href='#') Contact
-  h3.text-muted prejuice ui
-
 div(ng-show='quizReadyToStart')
   div(ng-switch='quizState')
 
@@ -19,19 +9,20 @@ div(ng-show='quizReadyToStart')
         p
           a.btn.btn-lg.btn-success(ng-click='startQuiz()') Yeah!
 
-    .row(ng-switch-when='question')
-      .question
+    .row.question(ng-switch-when='question')
+      .col-md-12
         h3 {{activeQuestion.question}}
-        p {{activeAnswerValue}} 
-        input(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
-        p 
-          button(ng-click='answerQuestion()') Answer
+      .col-md-12
+        form.center
+          input.slider(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
+      .col-md-12.center
+        a.btn.btn-lg.btn-primary(ng-click='answerQuestion()') Answer {{activeAnswerValue}}
       
-    .row(ng-switch-when='post-question')
-      .post-question
-        h3 Post question
-        p
-          button(ng-click='nextQuestion()') Next
+    .row.post-question(ng-switch-when='post-question')
+      .col-md-12
+        h3 {{activeQuestion.question}}
+      .col-md-12.center
+        a.btn.btn-lg.btn-default(ng-click='nextQuestion()') Next
       
     .row(ng-switch-when='completed')
       .jumbotron
