@@ -17,6 +17,10 @@ html
         | Always a pleasure scaffolding your apps.
       p
         a.btn.btn-lg.btn-success(ng-href='#') Splendid!
+    .row
+      h3 Questions
+      ul.questions(ng-repeat='question in getQuestions()')
+        li {{question.question}}
     .row.marketing
       h4 HTML5 Boilerplate
       p

@@ -44,6 +44,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/{,*/}*.jade'],
+        tasks: ['jade:livereload']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
