@@ -21,6 +21,7 @@ html.no-js
     // endbower
     // build:css({.tmp,app}) styles/main.css
     link(rel='stylesheet', href='styles/main.css')
+    link(rel='stylesheet', href='styles/animate.css')
     // endbuild
   body.prejuice(ng-app='prejuiceUiApp')
     //if lt IE 7
@@ -73,9 +74,12 @@ html.no-js
     // build:js({.tmp,app}) scripts/scripts.js
     script(src='scripts/app.js')
     script(src='scripts/controllers/main.js')
+    script(src='scripts/controllers/question.js')
     script(src='scripts/controllers/result.js')
+    script(src='scripts/controllers/test.js')
     script(src='scripts/services/api.js')
     script(src='scripts/services/user.js')
     script(src='scripts/services/alert.js')
+    script(src='scripts/services/questions.js')
     script(src='scripts/directives/pj-slider.js')
     // endbuild

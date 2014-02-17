@@ -37,6 +37,13 @@ angular.module('prejuiceUiApp')
         color: "#4D5360"
       }
     ]
+    
+    $scope.increase = ()->
+      $scope.chart[0].value++
+      
+    $scope.decrease = ()->
+      $scope.chart[0].value++
+    
     $scope.options =
   
       #Boolean - Whether we should show a stroke on each segment

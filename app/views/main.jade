@@ -1,5 +1,5 @@
 div(ng-show='quizReadyToStart')
-  div(ng-switch='quizState')
+  div(ng-switch='quizState', ng-animate='slide')
 
     .row(ng-switch-when='ready')
       .jumbotron
@@ -9,20 +9,26 @@ div(ng-show='quizReadyToStart')
         p
           a.btn.btn-lg.btn-success(ng-click='startQuiz()') Yeah!
 
-    .row.question(ng-switch-when='question')
-      .col-md-12
-        h3 {{activeQuestion.question}}
-      .col-md-12
-        form.center
-          input.slider(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
-      .col-md-12.center
-        a.btn.btn-lg.btn-primary(ng-click='answerQuestion()') Answer {{activeAnswerValue}}
-      
-    .row.post-question(ng-switch-when='post-question')
-      .col-md-12
-        h3 {{activeQuestion.question}}
-      .col-md-12.center
-        a.btn.btn-lg.btn-default(ng-click='nextQuestion()') Next
+    .row(ng-switch-when='running')
+    
+      .question(ng-controller='QuestionCtrl')
+        .col-md-12
+          h3 {{getActiveQuestion().questionCategory}}
+          p {{getActiveQuestion().introText}}
+        
+        .col-md-12(ng-switch='getQuestionState()')
+          div(ng-switch-when='question')
+            h4 {{getActiveSubQuestion().question}}
+            form.center
+              input.slider(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
+            p
+              a.btn.btn-lg.btn-primary(ng-click='registerAnswerForActiveSubQuestion()') Answer {{activeAnswerValue}}
+  
+          div(ng-switch-when='post-question')
+            ul(ng-repeat='subQuestion in getActiveQuestion().subQuestions')
+              li {{subQuestion.postStatement}}
+            p
+              a.btn.btn-lg.btn-default(ng-click='nextQuestion()') Next
       
     .row(ng-switch-when='completed')
       .jumbotron
