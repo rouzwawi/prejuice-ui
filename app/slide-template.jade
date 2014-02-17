@@ -1,20 +1,20 @@
 .col-md-12.card(ng-switch='activeStep.type')
   div(ng-switch-when='questionIntro')
-    h1 {{activeStep.category}}
-    p {{activeStep.introText}}
+    h1 {{activeStep.question.category}}
+    p {{activeStep.question.introText}}
     p
       button(ng-click='nextStep()') Nu kör vi!
 
   div(ng-switch-when='subQuestion')
-    h1 {{activeStep.category}}
-    h3 {{activeStep.question}}
+    h1 {{activeStep.question.category}}
+    h3 {{activeStep.question.question}}
     form.center
-      input.slider(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
+      input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')
     p
       a.btn.btn-lg.btn-primary(ng-click='nextStep()') Answer {{activeAnswerValue}}
 
   div(ng-switch-when='questionOutro')
-    h1 {{activeStep.category}}
+    h1 {{activeStep.question.category}}
     p Done with question
     p(ng-repeat='stat in partialStats')
       {{stat}}

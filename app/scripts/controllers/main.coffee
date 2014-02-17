@@ -32,28 +32,19 @@ angular.module('prejuiceUiApp')
         #question intro
         steps.push
           type: 'questionIntro'
-          introText: question.introText
-          category: question.questionCategory
-          source: question.source
-          questionId: question.id
+          question: question
         
         #sub questions
         for subQuestion in question.subQuestions
           steps.push
             type: 'subQuestion'
-            question: subQuestion.question
-            minRange: subQuestion.minRange
-            maxRange: subQuestion.maxRange
-            answer: subQuestion.answer
-            rangeUnit: subQuestion.rangeUnit
+            question: subQuestion
             coordinates: [question.id, subQuestion.id]
 
         #question outro
         steps.push
           type: 'questionOutro'
-          category: question.questionCategory
-          source: question.source
-          questionId: question.id
+          question: question
       
       console.log steps
       $scope.steps = steps
@@ -78,9 +69,12 @@ angular.module('prejuiceUiApp')
         $scope.activeStepIndex++
         $scope.activeStep = $scope.steps[$scope.activeStepIndex]
 
+        if $scope.activeStep.type is 'subQuestion'
+          $scope.activeAnswerValue = $scope.activeStep.question.initial
+
         if $scope.activeStep.type is 'questionOutro'
-          partialAnswers = $.extend {}, answers[$scope.activeStep.questionId]
-          partialAnswers.id = $scope.activeStep.questionId
+          partialAnswers = $.extend {}, answers[$scope.activeStep.question.id]
+          partialAnswers.id = $scope.activeStep.question.id
           console.log 'GET STATS: ', partialAnswers
           $scope.partialStats = API.answerStats.get partialAnswers, (res)->
             console.log res
