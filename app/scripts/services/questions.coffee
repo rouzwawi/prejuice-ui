@@ -52,21 +52,13 @@ angular.module('prejuiceUiApp')
         nextQuestion()
     
     endQuiz = ()->
-      API.answers.save
-        userToken: User.getUserToken()
-        answers: answers
-      , (res)->
-        $rootScope.$broadcast 'QUIZ_DONE'
-      , (err)->
-        Alert.add 'error', 'Could not post answers (' + err.status + ')'
+      
     
     
     
     
     getQuestions: ()->
       return questions
-    
-    
     
     getActiveQuestion: ()->
       return activeQuestion

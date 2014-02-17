@@ -15,8 +15,5 @@ app = angular.module('prejuiceUiApp', [
       .when '/result/:userToken',
         templateUrl: 'views/result.html'
         controller: 'ResultCtrl'
-      .when '/test',
-        templateUrl: 'views/test.html'
-        controller: 'TestCtrl'
       .otherwise
         redirectTo: '/'

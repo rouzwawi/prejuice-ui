@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .controller 'MainCtrl', ['$scope', '$location', 'User', 'Questions', 'API', 'Alert', ($scope, $location, User, Questions, API, Alert) ->
+  .controller 'MainCtrl', ['$rootScope', '$scope', '$location', 'User', 'API', 'Alert', ($rootScope, $scope, $location, User, API, Alert) ->
     
     $scope.quizReadyToStart = false
     $scope.quizState = 'ready'
@@ -17,10 +17,16 @@ angular.module('prejuiceUiApp')
         if $scope.activeAnswerValue != val
           $scope.activeAnswerValue = val
     
-    $scope.$on 'GOT_QUESTIONS', ()->
+    $rootScope.$on 'LOGGED_IN', ()->
+      questionsObj = API.questions.get (res)->
+        createSteps questionsObj.questions
+      , (err)->
+        Alert.add 'error', 'Could not get questions (' + err.status + ')'
+    
+    createSteps = (questions)->
       steps = []
       
-      for question in Questions.getQuestions()
+      for question in questions
         #question intro
         steps.push
           type: 'questionIntro'
@@ -50,9 +56,6 @@ angular.module('prejuiceUiApp')
       $scope.nextStep()
       $scope.quizReadyToStart = true
     
-    $scope.$on 'QUIZ_DONE', ()->
-        $scope.quizState = 'completed'
-    
     $scope.startQuiz = ()->
       $scope.quizState = 'running'
       
@@ -66,7 +69,13 @@ angular.module('prejuiceUiApp')
         $scope.activeStepIndex++
         $scope.activeStep = $scope.steps[$scope.activeStepIndex]
       else
-        $scope.quizState = 'completed'
+        API.answers.save
+          userToken: User.getUserToken()
+          answers: {}
+        , (res)->
+          $scope.quizState = 'completed'
+        , (err)->
+          Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
     $scope.showResult = ()->
       $location.path('result/' + User.getUserToken());
