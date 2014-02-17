@@ -16,5 +16,7 @@
   div(ng-switch-when='questionOutro')
     h1 {{activeStep.category}}
     p Done with question
+    p(ng-repeat='stat in partialStats')
+      {{stat}}
     p
       button(ng-click='nextStep()') Nästa fördom!

@@ -82,8 +82,8 @@ angular.module('prejuiceUiApp')
           partialAnswers = $.extend {}, answers[$scope.activeStep.questionId]
           partialAnswers.id = $scope.activeStep.questionId
           console.log 'GET STATS: ', partialAnswers
-          partialStats = API.answerStats.get partialAnswers, ()->
-            console.log partialStats
+          $scope.partialStats = API.answerStats.get partialAnswers, (res)->
+            console.log res
       else
         console.log answers
         API.answers.save
