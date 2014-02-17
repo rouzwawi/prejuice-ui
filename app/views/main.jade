@@ -2,13 +2,34 @@ div(ng-show='quizReadyToStart')
   div(ng-switch='quizState', ng-animate='slide')
 
     .row(ng-switch-when='ready')
-      .jumbotron
-        h1 Welcome!
-        p.lead
-          | Are you ready?
-        p
-          a.btn.btn-lg.btn-success(ng-click='startQuiz()') Yeah!
+      .col-md-12.card
+        h1.center Hej!
+        h3.center
+          | Sverige är fullt av kriminella homosexuella invandrare som lönediskriminerar våra tjejer och snor våra bidrag. Eller?
+        h3.center
+          | Testa hur fördomsfull 
+          span(style='color:#df4c3a') DU
+          |  är. Svara på 12 frågor så ger vi dig din 
+          span(style='color:blue') fördomsprofil
+          | .
+        p.center(style='margin-top:20px')
+          a.btn.btn-lg.btn-success#startQuizButton(ng-click='startQuiz()') Starta testet!
           
+          script(type='text/javascript').
+            $('#startQuizButton').jrumble({
+              speed: 50
+            });
+            var startRumble = function(){
+              $('#startQuizButton').trigger('startRumble');
+              setTimeout(stopRumble, 700);
+            };
+            var stopRumble = function(){
+              $('#startQuizButton').trigger('stopRumble');
+              setTimeout(startRumble, 5000);
+            };
+            
+            setTimeout(startRumble, 8000);
+        
     .row(ng-switch-when='running')
       .col-md-12
         p {{activeStepIndex}}

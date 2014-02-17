@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    h1 Din fördomsprofil
+    h1.white Din fördomsprofil
 .row.card(style='position:relative; height:250px;')
   .col-xs-3.chart-overlay(style='height:198px')
     p.center Invandring
@@ -13,30 +13,27 @@
   .col-md-12(style='width:100%; position:absolute; top:0px; left:0px;')
     canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
     
-.row.card
-  .col-sm-6
+.row
+  .col-sm-6.card
     h2 Din fördomsfaktor är
     p.prejudice-factor
       | 62%
   .col-sm-6
     h3 Du är fördomsfull som
     .prejudice-scale-container
-      .prejudice-scale-row.row(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='{selected: i==selectedLeaderRow}')
-        div(ng-show='i == selectedLeaderRow', ng-class='{active: i==leaderTypePosition}')
-          .col-sm-2
-            h1 {{i}}
-          .col-sm-4
+      .prejudice-scale-row.row(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
+        div(ng-show='i == selectedLeaderRow')
+          .col-sm-3.leader-img
+            img(src='{{getLeader(i).img}}')
+          .col-sm-9
+            strong {{i}}
             strong {{getLeader(i).name}}
-          .col-sm-6
-            p s
-        div(ng-show='i != selectedLeaderRow', ng-class='{active: i==leaderTypePosition}')
-          .col-sm-2
-            h4 {{i}}
-          .col-sm-4
+        div(ng-show='i != selectedLeaderRow')
+          .col-sm-3.leader-img
+            img.leader(src='{{getLeader(i).img}}')
+          .col-sm-9
+            strong {{i}}
             strong {{getLeader(i).name}}
-          .col-sm-6
-            p
-              button(ng-click='selectLeaderRow(i)') show
     
 .row.card
   .col-md-8

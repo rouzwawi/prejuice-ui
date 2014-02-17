@@ -77,8 +77,16 @@ angular.module('prejuiceUiApp')
     $scope.selectLeaderRow = (pos)->
       $scope.selectedLeaderRow = pos
     
+    $scope.getRowClass = (pos)->
+      if $scope.selectedLeaderRow == pos and $scope.leaderTypePosition == pos
+        return 'selected-and-active'
+      else if $scope.selectedLeaderRow == pos
+        return 'selected'
+      else if $scope.leaderTypePosition == pos
+        return 'active'
+      return ''
+    
     $scope.getLeader = (leaderPosition)->
-      leaderPosition = 1
       return leaders[leaderPosition-1]
     
   ]
