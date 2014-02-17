@@ -4,13 +4,13 @@
     button(ng-click='increase()') Increase
     button(ng-click='decrease()') Decrease
   
-  .switch(ng-switch='', on='article', ng-animate='animate', style='position:relative')
-    .ng-scope(ng-switch-when='1', style='background-color:red')
+  .my-switch-container(ng-switch='', on='article', ng-animate='animate', style='position:relative')
+    .my-switch-animation(ng-switch-when='1', style='background-color:red')
       h1 One
-    .ng-scope(ng-switch-when='2', style='background-color:green')
+    .my-switch-animation(ng-switch-when='2', style='background-color:green')
       h1 Two
-    .ng-scope(ng-switch-when='3', style='background-color:blue')
+    .my-switch-animation(ng-switch-when='3', style='background-color:blue')
       h1 Three
-    .ng-scope(ng-switch-when='4', style='background-color:purple')
+    .my-switch-animation(ng-switch-when='4', style='background-color:purple')
       h1 Four
   

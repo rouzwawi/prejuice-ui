@@ -1,0 +1,20 @@
+.col-md-12(ng-switch='activeStep.type')
+  div(ng-switch-when='questionIntro')
+    h1 {{activeStep.category}}
+    p {{activeStep.introText}}
+    p
+      button(ng-click='nextStep()') Nu kör vi!
+
+  div(ng-switch-when='subQuestion')
+    h1 {{activeStep.category}}
+    h3 {{activeStep.question}}
+    form.center
+      input.slider(pj-slider, on-slider-value-updated='onQuestionSliderValueUpdated(val)', data-slider-id='questionSlider', type='text', data-slider-min='0', data-slider-max='100', data-slider-step='1', data-slider-value='14')
+    p
+      a.btn.btn-lg.btn-primary(ng-click='nextStep()') Answer {{activeAnswerValue}}
+
+  div(ng-switch-when='questionOutro')
+    h1 {{activeStep.category}}
+    p Done with question
+    p
+      button(ng-click='nextStep()') Nästa fördom!

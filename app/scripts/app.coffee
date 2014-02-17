@@ -1,13 +1,13 @@
 'use strict'
 
-angular.module('prejuiceUiApp', [
+app = angular.module('prejuiceUiApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ngAnimate',
   'angles'
-])
-  .config ($routeProvider) ->
+]).config ($routeProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'

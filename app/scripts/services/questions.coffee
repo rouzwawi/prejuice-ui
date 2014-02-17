@@ -60,6 +60,14 @@ angular.module('prejuiceUiApp')
       , (err)->
         Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
+    
+    
+    
+    getQuestions: ()->
+      return questions
+    
+    
+    
     getActiveQuestion: ()->
       return activeQuestion
       
