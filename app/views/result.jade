@@ -16,8 +16,8 @@
         canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
       .col-xs-12#details
         h3 hej
-      script.
-        $('#details').collapse()
+      //script(type='text/javascript').
+      //  $('#details').collapse();
     
   div
     .col-xs-12.card.prejudice-factor
@@ -27,15 +27,16 @@
         span %
       h3 Du är fördomsfull som
       i.fa.fa-arrow-down(style='font-size:80px;')
+      
     .col-xs-12.card-empty
       .prejudice-scale-container
         .prejudice-scale-row.col-xs-12(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
           span.badge {{i}}
           div(ng-show='i == selectedLeaderRow')
             //selected row
-            .col-sm-3.leader-img
+            .col-xs-3.leader-img
               img(src='{{getLeader(i).img}}')
-            .col-sm-9.leader-data
+            .col-xs-9.leader-data
               h4
                 | {{getLeader(i).name}}
               span.leader-percentage {{getLeaderPercentage(i)}}
@@ -43,7 +44,7 @@
                 i.fa.fa-star 
                 |  {{getLeader(i).birth}}
               h6 {{getLeader(i).title}}
-            .col-sm-12.quote
+            .col-xs-12.quote
               blockquote "{{getLeader(i).quote}}"
               p.leader-source
                 | - {{getLeader(i).source}}
@@ -52,9 +53,9 @@
                   | Läs mer här
                   i.fa.fa-caret-right(style='padding-left:4px;')
           div(ng-show='i != selectedLeaderRow')
-            .col-sm-3.leader-img
+            .col-xs-3.leader-img
               img.leader(src='{{getLeader(i).img}}')
-            .col-sm-9.leader-data(style='position:relative;')
+            .col-xs-8.leader-data(style='position:relative;')
               h4
                 | {{getLeader(i).name}}
               span.leader-percentage {{getLeaderPercentage(i)}}
@@ -63,7 +64,7 @@
                 |  {{getLeader(i).birth}}
               h6 {{getLeader(i).title}}
     
-  .row
+  div
     .col-xs-12.card
       .col-xs-6
         h3 Dela med dina vänner
@@ -77,7 +78,7 @@
         h3
           i.fa.fa-link
 
-  .row
+  div
     .col-xs-12.card
       .col-xs-6
         h4 Så räknar vi

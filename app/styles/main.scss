@@ -61,6 +61,14 @@ body {
   margin: 20px 0px;
 }
 
+.quiz-button {
+  text-align:right;
+}
+
+.question .btn, .post-question .btn, .quiz-button {
+  font-weight: 700;
+}
+
 .prejuice .slider {
   width: 92% !important;
   height: 70px;
@@ -76,6 +84,27 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
+  
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#74b4b4), to(#569595));
+  background-image: -webkit-linear-gradient(top, #74b4b4, 0%, #569595, 100%);
+  background-image: -moz-linear-gradient(top, #74b4b4 0%, #569595 100%);
+  background-image: linear-gradient(to bottom, #74b4b4 0%, #569595 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff74b4b4', endColorstr='#ff569595', GradientType=0);
+  border: 1px solid #123333;
+  opacity: 0.9;
+}
+
+.slider .tooltip .tooltip-arrow {
+  border-top-color: #74b4b4;
+  border-bottom-color: #74b4b4;
+}
+
+.slider .tooltip .tooltip-inner  {
+  background-color: #74b4b4;
+  font-size: 18px;
+  padding: 4px 12px;
+  border-radius: 6px;
 }
 
 .btn.btn-prejuice {
@@ -92,7 +121,6 @@ body {
 }
 
 .card-empty {
-  margin: 10px;
   padding: 15px;
 }
 
