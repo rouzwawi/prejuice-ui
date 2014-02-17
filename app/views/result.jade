@@ -1,12 +1,61 @@
-.jumbotron
-  h1 Result
-  h6 Score: {{score}}
+.row
+  .col-md-12
+    h1 Din fördomsprofil
+.row.card(style='position:relative; height:250px;')
+  .col-xs-3.chart-overlay(style='height:198px')
+    p.center Invandring
+  .col-xs-3.chart-overlay(style='height:198px')
+    p.center Bidragsfusk
+  .col-xs-3.chart-overlay(style='height:198px')
+    p.center Jämställdhet
+  .col-xs-3.chart-overlay(style='height:198px')
+    p.center Klyftor
+  .col-md-12(style='width:100%; position:absolute; top:0px; left:0px;')
+    canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
+    
+.row.card
+  .col-sm-6
+    h2 Din fördomsfaktor är
+    p.prejudice-factor
+      | 62%
+  .col-sm-6
+    h3 Du är fördomsfull som
+    .prejudice-scale-container
+      .prejudice-scale-row.row(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='{selected: i==selectedLeaderRow}')
+        div(ng-show='i == selectedLeaderRow', ng-class='{active: i==leaderTypePosition}')
+          .col-sm-2
+            h1 {{i}}
+          .col-sm-4
+            strong {{getLeader(i).name}}
+          .col-sm-6
+            p s
+        div(ng-show='i != selectedLeaderRow', ng-class='{active: i==leaderTypePosition}')
+          .col-sm-2
+            h4 {{i}}
+          .col-sm-4
+            strong {{getLeader(i).name}}
+          .col-sm-6
+            p
+              button(ng-click='selectLeaderRow(i)') show
+    
+.row.card
+  .col-md-8
+    h3 Dela med dina vänner
+  .col-md-4
+    h3
+      i.fa.fa-facebook
+      i.fa.fa-twitter
+      i.fa.fa-link
 
-div
-  ul(ng-repeat='(id, answer) in answers')
-    li {{id}} - {{answer}}
-  p
-    button(ng-click='increase()')
-    button(ng-click='decrease()')
-  p
-    canvas(chart, type='Pie', options='options', data='chart', width='300', height='300')
+.row.card
+  .col-md-6
+    h4 Så räknar vi
+    ul
+      li Mauris posuere lacus a tortor porta mollis. Quisque ac diam sapien.
+      li Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius vel lorem eu imperdiet. Etiam egestas tortor lacus, sed fermentum orci volutpat ut.
+      li Fusce vulputate consequat imperdiet. Nullam semper sapien ut dictum bibendum.
+  .col-md-6
+    h4 Källor
+    ul
+      li Statistiska centralbyrån
+      li SVT Pejl

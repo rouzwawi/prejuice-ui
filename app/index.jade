@@ -23,6 +23,8 @@ html.no-js
     link(rel='stylesheet', href='styles/main.css')
     link(rel='stylesheet', href='styles/animate.css')
     // endbuild
+    link(href='http://fonts.googleapis.com/css?family=Oswald:400,700,300', rel='stylesheet', type='text/css')
+    link(href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel="stylesheet")
   body.prejuice(ng-app='prejuiceUiApp')
     //if lt IE 7
       p.browsehappy
@@ -69,7 +71,7 @@ html.no-js
     script(src='bower_components/angular-route/angular-route.js')
     script(src='bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js')
     script(src='bower_components/angular-animate/angular-animate.js')
-    script(src='bower_components/angles/angles.js')
+    script(src='vendor/Chart.js')
     // endbower
     // endbuild
     // build:js({.tmp,app}) scripts/scripts.js
@@ -80,4 +82,7 @@ html.no-js
     script(src='scripts/services/user.js')
     script(src='scripts/services/alert.js')
     script(src='scripts/directives/pj-slider.js')
+    script(src='scripts/directives/pj-chart.js')
+    
+    script(src='scripts/models/leaders.js')
     // endbuild

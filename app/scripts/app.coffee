@@ -5,8 +5,7 @@ app = angular.module('prejuiceUiApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngAnimate',
-  'angles'
+  'ngAnimate'
 ]).config ($routeProvider) ->
     $routeProvider
       .when '/',

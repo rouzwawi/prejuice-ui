@@ -1,7 +1,5 @@
 .slide-animate-container {
     position:relative;
-    background:white;
-    border:1px solid black;
     height:400px;
     width:100%;
     overflow:hidden;
@@ -26,11 +24,23 @@
  
   .slide-animate.ng-enter {
     left:100%;
+    -webkit-transform: scale(1.25, 1.25);
+    -moz-transform: scale(1.25, 1.25);
+    transform: scale(1.25, 1.25);
+    opacity: 0;
   }
   .slide-animate.ng-leave,
   .slide-animate.ng-enter.ng-enter-active {
     left:0;
+    -webkit-transform: scale(1, 1);
+    -moz-transform:  scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
   }
   .slide-animate.ng-leave.ng-leave-active {
     left:-100%;
+    -webkit-transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+    opacity: 0;
   }
