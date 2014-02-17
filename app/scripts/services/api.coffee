@@ -30,6 +30,8 @@ angular.module('prejuiceUiApp')
     ###
     userToken: $resource '/api/token'
 
+    answerStats: $resource '/api/stats/:id'
+
     ###
       {
         userToken: <string>,

@@ -11,6 +11,8 @@ angular.module('prejuiceUiApp')
     $scope.activeStep = null
     
     $scope.activeAnswerValue = 0
+
+    answers = {}
     
     $scope.onQuestionSliderValueUpdated = (val)->
       $scope.$apply ()->
@@ -33,6 +35,7 @@ angular.module('prejuiceUiApp')
           introText: question.introText
           category: question.questionCategory
           source: question.source
+          questionId: question.id
         
         #sub questions
         for subQuestion in question.subQuestions
@@ -43,12 +46,14 @@ angular.module('prejuiceUiApp')
             maxRange: subQuestion.maxRange
             answer: subQuestion.answer
             rangeUnit: subQuestion.rangeUnit
-      
+            coordinates: [question.id, subQuestion.id]
+
         #question outro
         steps.push
           type: 'questionOutro'
           category: question.questionCategory
           source: question.source
+          questionId: question.id
       
       console.log steps
       $scope.steps = steps
@@ -60,20 +65,33 @@ angular.module('prejuiceUiApp')
       $scope.quizState = 'running'
       
     $scope.nextStep = ()->
-      if $scope.activeStep != null and $scope.steps[$scope.activeStepIndex].type = 'subQuestion'
+      console.log 'next step'
+      if $scope.activeStep and $scope.activeStep.type is 'subQuestion'
         #save answer
         #Questions.registerAnswerForActiveSubQuestion($scope.activeAnswerValue)
-        console.log 'SAVE: ' + $scope.activeAnswerValue
-      
+        console.log 'SAVE: ', $scope.activeStep.coordinates, $scope.activeAnswerValue
+        cs = $scope.activeStep.coordinates
+        answers[cs[0]] ?= {}
+        answers[cs[0]][cs[1]] = $scope.activeAnswerValue
+
       if ($scope.activeStepIndex + 1) < $scope.steps.length
         $scope.activeStepIndex++
         $scope.activeStep = $scope.steps[$scope.activeStepIndex]
+
+        if $scope.activeStep.type is 'questionOutro'
+          partialAnswers = $.extend {}, answers[$scope.activeStep.questionId]
+          partialAnswers.id = $scope.activeStep.questionId
+          console.log 'GET STATS: ', partialAnswers
+          partialStats = API.answerStats.get partialAnswers, ()->
+            console.log partialStats
       else
+        console.log answers
         API.answers.save
           userToken: User.getUserToken()
-          answers: {}
+          answers: answers
         , (res)->
           $scope.quizState = 'completed'
+          console.log res
         , (err)->
           Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
