@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .directive('pjChart', ["$rootScope", ($rootScope) ->
+  .directive 'pjChart', ["$rootScope", ($rootScope) ->
     scope:
       data: '='
     link: (scope, elm, attrs) ->
@@ -55,4 +55,4 @@ angular.module('prejuiceUiApp')
         return
 
       respChart $("canvas"), chartData
-  ])
+  ]

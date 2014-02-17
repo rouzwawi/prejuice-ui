@@ -5,8 +5,13 @@ app = angular.module('prejuiceUiApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngAnimate'
-]).config ($routeProvider, $locationProvider) ->
+  'ngAnimate',
+  'facebook'
+]).config [
+  '$routeProvider',
+  '$locationProvider',
+  'FacebookProvider',
+  ($routeProvider, $locationProvider, FacebookProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
@@ -16,3 +21,8 @@ app = angular.module('prejuiceUiApp', [
         controller: 'ResultCtrl'
       .otherwise
         redirectTo: '/'
+
+    # Here you could set your appId throug the setAppId method and then initialize
+    # or use the shortcut in the initialize method directly.
+    FacebookProvider.init '469787509789276'
+  ]
