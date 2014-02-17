@@ -12,7 +12,15 @@ angular.module('prejuiceUiApp')
       id: userToken
     , (res)->
       $scope.answers = answers
-      console.log $scope.answers
+      mine = []
+      all = []
+      for q in [0...4]
+        for i in [0...3]
+          mine.push Math.round(answers[q][i].myScore * 100)
+          all.push Math.round(answers[q][i].overall * 100)
+      $scope.chart.datasets[0].data = mine
+      $scope.chart.datasets[1].data = all
+
     , (err)->
       Alert.add 'error', 'Could not get answers (' + err.status + ')'
       
@@ -37,40 +45,14 @@ angular.module('prejuiceUiApp')
           strokeColor: "rgba(220,220,220,1)"
           pointColor: "rgba(220,220,220,1)"
           pointStrokeColor: "#fff"
-          data: [
-            65
-            59
-            90
-            81
-            56
-            55
-            40
-            59
-            90
-            81
-            56
-            55
-          ]
+          data: []
         }
         {
           fillColor: "rgba(151,187,205,0.5)"
           strokeColor: "rgba(151,187,205,1)"
           pointColor: "rgba(151,187,205,1)"
           pointStrokeColor: "#fff"
-          data: [
-            28
-            48
-            40
-            19
-            96
-            27
-            100
-            40
-            19
-            96
-            27
-            100
-          ]
+          data: []
         }
       ]
     

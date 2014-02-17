@@ -3,22 +3,20 @@
 angular.module('prejuiceUiApp')
   .directive('pjChart', ["$rootScope", ($rootScope) ->
     scope:
-        data: '='
+      data: '='
     link: (scope, elm, attrs) ->
-      
+
       chartData = scope.data
-      
+
       respChart = (selector, data, options) ->
-  
+
         generateChart = ->
-    
           # make chart width fit with its container
           ww = selector.attr("width", $(container).width())
-    
           # Initiate new chart or Redraw
           new Chart(ctx).Line data, options
           return
-  
+
         option =
           scaleOverlay: false
           scaleOverride: false
@@ -48,13 +46,12 @@ angular.module('prejuiceUiApp')
           animationEasing: "easeOutQuart"
           onAnimationComplete: null
 
-        options = option  if options is false or not options?
+        options = option if options is false or not options?
         ctx = selector.get(0).getContext("2d")
         container = $(selector).parent()
         $(window).resize generateChart
-  
-        # run function - render chart at first load
-        generateChart()
+        scope.$watch generateChart
+
         return
 
       respChart $("canvas"), chartData
