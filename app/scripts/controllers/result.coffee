@@ -4,7 +4,7 @@ angular.module('prejuiceUiApp')
   .controller 'ResultCtrl', ['$scope', '$routeParams', 'API', 'Alert', ($scope, $routeParams, API, Alert) ->
     
     $scope.leaderTypePosition = 2
-    $scope.selectedLeaderRow = 5
+    $scope.selectedLeaderRow = 2
     
     userToken = $routeParams.userToken
     
@@ -26,24 +26,24 @@ angular.module('prejuiceUiApp')
       
     $scope.chart = 
       labels: [
-        "Q1"
-        "Q2"
-        "Q3"
-        "Q4"
-        "Q5"
-        "Q6"
-        "Q7"
-        "Q8"
-        "Q9"
-        "Q10"
-        "Q11"
-        "Q12"
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+        "10"
+        "11"
+        "12"
       ]
       datasets: [
         {
           fillColor: "rgba(220,220,220,0.0)"
-          strokeColor: "rgba(220,220,220,1)"
-          pointColor: "rgba(220,220,220,1)"
+          strokeColor: "rgba(86,149,149,1)"
+          pointColor: "rgba(86,149,149,1)"
           pointStrokeColor: "#fff"
           data: []
         }
@@ -70,5 +70,8 @@ angular.module('prejuiceUiApp')
     
     $scope.getLeader = (leaderPosition)->
       return leaders[leaderPosition-1]
+      
+    $scope.getLeaderPercentage = (leaderPosition)->
+      return (100 - (leaderPosition-1) * 10) + '-' + (100 - (leaderPosition * 10)) + '%'
     
   ]
