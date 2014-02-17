@@ -6,12 +6,12 @@ app = angular.module('prejuiceUiApp', [
   'ngSanitize',
   'ngRoute',
   'ngAnimate'
-]).config ($routeProvider) ->
+]).config ($routeProvider, $locationProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
-      .when '/result/:userToken',
+      .when '/:userToken',
         templateUrl: 'views/result.html'
         controller: 'ResultCtrl'
       .otherwise

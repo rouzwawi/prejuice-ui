@@ -1,17 +1,18 @@
 .row
   .col-md-12
     h1.white Din fördomsprofil
-.row.card(style='position:relative; height:250px;')
-  .col-xs-3.chart-overlay(style='height:198px')
-    p.center Invandring
-  .col-xs-3.chart-overlay(style='height:198px')
-    p.center Bidragsfusk
-  .col-xs-3.chart-overlay(style='height:198px')
-    p.center Jämställdhet
-  .col-xs-3.chart-overlay(style='height:198px')
-    p.center Klyftor
-  .col-md-12(style='width:100%; position:absolute; top:0px; left:0px;')
-    canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
+.row
+  .card(style='position:relative; height:250px;')
+    .col-xs-3.chart-overlay(style='height:198px')
+      p.center Invandring
+    .col-xs-3.chart-overlay(style='height:198px')
+      p.center Bidragsfusk
+    .col-xs-3.chart-overlay(style='height:198px')
+      p.center Jämställdhet
+    .col-xs-3.chart-overlay(style='height:198px')
+      p.center Klyftor
+    .col-md-12(style='width:100%; position:absolute; top:0px; left:0px;')
+      canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
     
 .row
   .col-sm-6.card
@@ -22,37 +23,42 @@
     h3 Du är fördomsfull som
     .prejudice-scale-container
       .prejudice-scale-row.row(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
+        span.badge {{i}}
         div(ng-show='i == selectedLeaderRow')
           .col-sm-3.leader-img
             img(src='{{getLeader(i).img}}')
           .col-sm-9
-            strong {{i}}
             strong {{getLeader(i).name}}
         div(ng-show='i != selectedLeaderRow')
           .col-sm-3.leader-img
             img.leader(src='{{getLeader(i).img}}')
           .col-sm-9
-            strong {{i}}
-            strong {{getLeader(i).name}}
+            h4 {{getLeader(i).name}}
+            h6
+              i.fa.fa-star 
+              |  {{getLeader(i).birth}}
+            h6 {{getLeader(i).title}}
     
-.row.card
-  .col-md-8
-    h3 Dela med dina vänner
-  .col-md-4
-    h3
-      i.fa.fa-facebook
-      i.fa.fa-twitter
-      i.fa.fa-link
+.row
+  .card
+    .col-md-8
+      h3 Dela med dina vänner
+    .col-md-4
+      h3
+        i.fa.fa-facebook
+        i.fa.fa-twitter
+        i.fa.fa-link
 
-.row.card
-  .col-md-6
-    h4 Så räknar vi
-    ul
-      li Mauris posuere lacus a tortor porta mollis. Quisque ac diam sapien.
-      li Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius vel lorem eu imperdiet. Etiam egestas tortor lacus, sed fermentum orci volutpat ut.
-      li Fusce vulputate consequat imperdiet. Nullam semper sapien ut dictum bibendum.
-  .col-md-6
-    h4 Källor
-    ul
-      li Statistiska centralbyrån
-      li SVT Pejl
+.row
+  .card
+    .col-md-6
+      h4 Så räknar vi
+      ul
+        li Mauris posuere lacus a tortor porta mollis. Quisque ac diam sapien.
+        li Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius vel lorem eu imperdiet. Etiam egestas tortor lacus, sed fermentum orci volutpat ut.
+        li Fusce vulputate consequat imperdiet. Nullam semper sapien ut dictum bibendum.
+    .col-md-6
+      h4 Källor
+      ul
+        li Statistiska centralbyrån
+        li SVT Pejl

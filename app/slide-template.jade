@@ -6,7 +6,6 @@
       button(ng-click='nextStep()') Nu kör vi!
 
   div(ng-switch-when='subQuestion')
-    h1 {{activeStep.question.category}}
     h3 {{activeStep.question.question}}
     form.center
       input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')

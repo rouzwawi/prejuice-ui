@@ -33,6 +33,7 @@ angular.module('prejuiceUiApp')
         steps.push
           type: 'questionIntro'
           question: question
+        console.log question
         
         #sub questions
         for subQuestion in question.subQuestions
@@ -46,7 +47,6 @@ angular.module('prejuiceUiApp')
           type: 'questionOutro'
           question: question
       
-      console.log steps
       $scope.steps = steps
       $scope.activeStepIndex = -1
       $scope.nextStep()
@@ -90,6 +90,6 @@ angular.module('prejuiceUiApp')
           Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
     $scope.showResult = ()->
-      $location.path('result/' + User.getUserToken());
+      $location.path(User.getUserToken());
     
   ]
