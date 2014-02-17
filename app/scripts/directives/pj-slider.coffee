@@ -23,8 +23,9 @@ angular.module('prejuiceUiApp')
         # step: if q.rangeUnit is '*' then 0.1 else 1
         step: 0.1
         formater: (value) ->
-          res = rounder(value)
-          res += q.rangeUnit unless q.rangeUnit is '*'
+          res = rounder(value).toFixed(1)
+          res += ' ' if q.rangeUnit in ['mdr', 'ggr']
+          res += q.rangeUnit
           res
       $elm.on 'slide', (slideEvt)->
         update rounder slideEvt.value
