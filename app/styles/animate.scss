@@ -9,6 +9,7 @@
  
   .slide-animate {
     padding:10px;
+    width:100%;
   }
  
   .slide-animate.ng-enter, .slide-animate.ng-leave {
@@ -19,19 +20,15 @@
     top:0;
     left:0;
     right:0;
-    bottom:0;
-    display:block;
-    padding:10px;
+    //display:block;
+    //padding:10px;
   }
  
   .slide-animate.ng-enter {
     left:100%;
   }
+  .slide-animate.ng-leave,
   .slide-animate.ng-enter.ng-enter-active {
-    left:0;
-  }
- 
-  .slide-animate.ng-leave {
     left:0;
   }
   .slide-animate.ng-leave.ng-leave-active {
