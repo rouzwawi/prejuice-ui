@@ -19,7 +19,6 @@
       
     .row(ng-switch-when='running')
       .col-md-12
-        p(style='position:absolute;') {{activeStepIndex}}
         .slide-animate-container(ng-switch='activeStepIndex')
           .slide-animate(ng-switch-when='0')
             div(ng-include="'slide-template.html'")

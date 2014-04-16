@@ -10,17 +10,24 @@ angular.module('prejuiceUiApp')
     $scope.activeStepIndex = 0
     $scope.activeStep = null
     
+    $scope.categoryIndex = 1
+    $scope.progressPercentage = 0
+    
     $scope.activeAnswerValue = 0
 
     answers = {}
+    
+    updateProgress = ()->
+      percentage = ($scope.activeStepIndex / $scope.steps.length)
+      $scope.progressPercentage = Number(percentage*100).toFixed(0)
+      
+      $scope.categoryIndex = Number(Math.floor(percentage*4+1)).toFixed(0)
     
     $scope.roundNumber = (num, dec)->
       Number(num).toFixed(dec)
       
     $scope.getDotPosition = (question, val)->
       result = ( (val - question.minRange) / (question.maxRange - question.minRange) ) * 100 + "%"
-      console.log (result + ' = ' + '( (' + val + ' - ' + question.minRange + ') / (' + question.maxRange + ' - ' + question.minRange + ') ) * 100')
-      return result
     
     $scope.onQuestionSliderValueUpdated = (val)->
       $scope.$apply ()->
@@ -76,6 +83,7 @@ angular.module('prejuiceUiApp')
 
       if ($scope.activeStepIndex + 1) < $scope.steps.length
         $scope.activeStepIndex++
+        updateProgress()
         $scope.activeStep = $scope.steps[$scope.activeStepIndex]
 
         if $scope.activeStep.type is 'subQuestion'

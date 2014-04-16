@@ -1,11 +1,13 @@
 .col-md-12.card(ng-switch='activeStep.type')
   div(ng-switch-when='questionIntro')
+    include views/progress
     h1.quiz-title {{activeStep.question.category}}
     p.quiz-body {{activeStep.question.introText}}
     p.quiz-button
       a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Nu kör vi!
 
   div.sub-question(ng-switch-when='subQuestion')
+    include views/progress
     h3 {{activeStep.question.question}}
     form.center
       input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')
@@ -13,9 +15,9 @@
       a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Fortsätt
 
   div(ng-switch-when='questionOutro')
+    include views/progress
     .row
-      .col-xs-1
-      .col-xs-11
+      .col-xs-12
         h1.quiz-title.done {{activeStep.question.category}}
         h3.quiz-answers-title Dina svar:
     .row.quiz-answer(ng-repeat='stat in partialStats')
@@ -23,15 +25,36 @@
         h5.quiz-answer-title {{activeStep.question.subQuestions[$index].question}}       
         .slider.slider-horizontal
           .slider-track
+            .slider-handle.round.min-range(style='left: 0%;')
+              .tooltip.bottom.in.min-range(style='top: 17px !important;')
+                .tooltip-arrow
+                .tooltip-inner
+                  .span.tooltip-help-text Min
+                  | 0
             .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
               .tooltip.top.in.answer(style='top: -47px !important;')
                 .tooltip-arrow
-                .tooltip-inner {{stat.myAnswer}}
+                .tooltip-inner
+                  .span.tooltip-help-text Ditt Svar
+                  | {{stat.myAnswer}}
             .slider-handle.round.average(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.average)}};')
+              .tooltip.bottom.in.average(style='top: 17px !important;')
+                .tooltip-arrow
+                .tooltip-inner
+                  .span.tooltip-help-text Medel
+                  | {{roundNumber(stat.average,1)}}
             .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
               .tooltip.bottom.in.correct(style='top: 17px !important;')
                 .tooltip-arrow
-                .tooltip-inner {{stat.correct}}
+                .tooltip-inner
+                  .span.tooltip-help-text Rätt Svar
+                  | {{stat.correct}}
+            .slider-handle.round.max-range(style='left: 100%;')
+              .tooltip.bottom.in.max-range(style='top: 17px !important;')
+                .tooltip-arrow
+                .tooltip-inner
+                  .span.tooltip-help-text Max
+                  | 100
     
     .row
       .col-xs-12
