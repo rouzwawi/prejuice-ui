@@ -54,6 +54,8 @@ angular.module('prejuiceUiApp')
         ]
       options:
         mouseover: (data, i)->
+          $scope.$apply ()->
+            $scope.hoverQuestion = "bla " + i
           console.log data
           console.log i
     

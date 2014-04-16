@@ -3,18 +3,22 @@
     .col-xs-12
       h1.white Din fördomsprofil
   div
-    .col-xs-12.card
-      //.col-xs-3.chart-overlay(style='height:198px')
-      //  p.center Invandring
-      //.col-xs-3.chart-overlay(style='height:198px')
-      //  p.center Bidragsfusk
-      //.col-xs-3.chart-overlay(style='height:198px')
-      //  p.center Jämställdhet
-      //.col-xs-3.chart-overlay(style='height:198px')
-      //  p.center Klyftor
-      figure#result-chart(style='width: 100%; height: 300px;', pj-chart, data='chart')
-      //.col-xs-12(style='width:100%; position:absolute; top:0px; left:0px;')
-      //  canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
+    .col-xs-12.card(style='height:400px;')
+      .col-xs-12(style='position:absolute; top:10px; left:0px;')
+        .col-xs-3.chart-overlay(style='height:198px')
+          p.center Invandring
+        .col-xs-3.chart-overlay(style='height:198px')
+          p.center Bidragsfusk
+        .col-xs-3.chart-overlay(style='height:198px')
+          p.center Jämställdhet
+        .col-xs-3.chart-overlay(style='height:198px')
+          p.center Klyftor
+      .col-xs-12
+        figure#result-chart(style='height: 300px; margin-top:10px', pj-chart, data='chart')
+        //.col-xs-12
+        //  canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
+      .col-xs-12
+        p Fråga: {{hoverQuestion}}
     
   div
     .col-xs-12.card.prejudice-factor
