@@ -22,10 +22,11 @@ html.no-js
     // build:css({.tmp,app}) styles/main.css
     link(rel='stylesheet', href='styles/main.css')
     link(rel='stylesheet', href='styles/animate.css')
+    link(rel='stylesheet', href='vendor/xcharts.css')
     // endbuild
     link(href='http://fonts.googleapis.com/css?family=Oswald:400,700,300', rel='stylesheet', type='text/css')
     link(href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel="stylesheet")
-  body.prejuice(ng-app='prejuiceUiApp')
+  body#top.prejuice(ng-app='prejuiceUiApp')
     //if lt IE 7
       p.browsehappy
         | You are using an
@@ -40,11 +41,12 @@ html.no-js
 
     .container(ng-view='')
 
-    .footer
-      .container
-        p ♥ from the Juice team
+    //-.footer
+    //-  .container
+    //-    p ♥ from the Juice team
     
     script(src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js')
+    script(src='//d3js.org/d3.v3.min.js')
     //if lt IE 9
       script(src='bower_components/es5-shim/es5-shim.js')
       script(src='bower_components/json3/lib/json3.min.js')
@@ -52,7 +54,7 @@ html.no-js
     // build:js({.tmp,app}) scripts/vendor.js
     // bower:js
     script(src='bower_components/modernizr/modernizr.js')
-    script(src='bower_components/jquery/jquery.js')
+    script(src='bower_components/jquery/dist/jquery.js')
     script(src='bower_components/angular/angular.js')
     script(src='bower_components/angular-touch/angular-touch.min.js')
     script(src='bower_components/angular-resource/angular-resource.js')
@@ -63,7 +65,8 @@ html.no-js
     script(src='bower_components/sass-bootstrap/dist/js/bootstrap.js')
     script(src='bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js')
     script(src='bower_components/angular-animate/angular-animate.js')
-    script(src='vendor/Chart.js')
+    //script(src='vendor/Chart.js')
+    script(src='vendor/xcharts.js')
     // endbower
     // endbuild
     // build:js({.tmp,app}) scripts/scripts.js

@@ -1,11 +1,11 @@
 .col-md-12.card(ng-switch='activeStep.type')
   div(ng-switch-when='questionIntro')
-    h1 {{activeStep.question.category}}
-    p {{activeStep.question.introText}}
+    h1.quiz-title {{activeStep.question.category}}
+    p.quiz-body {{activeStep.question.introText}}
     p.quiz-button
       a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Nu kör vi!
 
-  div(ng-switch-when='subQuestion')
+  div.sub-question(ng-switch-when='subQuestion')
     h3 {{activeStep.question.question}}
     form.center
       input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')
@@ -16,33 +16,29 @@
     .row
       .col-xs-1
       .col-xs-11
-        h1 {{activeStep.question.category}}
-        h3 Dina svar:
-    .row(ng-repeat='stat in partialStats')
-      .col-xs-1
-        | {{$index}}
-      .col-xs-11
-        h5 Hur har medianinkomsten (kompenserat för inflation och annat) förändrats sedan 1981?        
-        .slider.slider-horizontal(style='width: 626px;')
+        h1.quiz-title.done {{activeStep.question.category}}
+        h3.quiz-answers-title Dina svar:
+    .row.quiz-answer(ng-repeat='stat in partialStats')
+      .col-xs-12
+        h5.quiz-answer-title {{activeStep.question.subQuestions[$index].question}}       
+        .slider.slider-horizontal
           .slider-track
-            .slider-handle.round.answer(style='left: 19.999999999999996%;')
-            .slider-handle.round.overall(style='left: 39.999999999999996%;')
-            .slider-handle.round.correct(style='left: 79.999999999999996%;')
-          .tooltip.bottom.in.answer(style='top: 60px; left: 84.09999999999998px;')
-            .tooltip-arrow
-            .tooltip-inner {{stat.myAnswer}}
-          .tooltip.top.in.correct(style='top: -30px; left: 404.09999999999998px;')
-            .tooltip-arrow
-            .tooltip-inner {{stat.correct}}
+            .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
+              .tooltip.top.in.answer(style='top: -47px !important;')
+                .tooltip-arrow
+                .tooltip-inner {{stat.myAnswer}}
+            .slider-handle.round.average(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.average)}};')
+            .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
+              .tooltip.bottom.in.correct(style='top: 17px !important;')
+                .tooltip-arrow
+                .tooltip-inner {{stat.correct}}
     
     .row
       .col-xs-12
         ul
-          li Inkomsterna har ökat för alla, tar man ett snitt har det gått riktigt bra.
-          li Men både grupperna rika och fattiga har vuxit. Det finns färre svenssons kvar i mitten (även om vi fortfarande är många).
-          li Mest extrem är utvecklingen för de allra rikaste. Den allra rikaste gruppen har mer än fördubblat sin andel av den totala kakan och har nu 10% av tårtan Sverige.
+          li(ng-repeat='statement in activeStep.question.postStatements') {{statement}}
       .col-xs-12
-        p Källa: SCB, HEK, Inkomstfördelning 1975-2011
+        p Källa: {{activeStep.question.source}}
     
     .row
       .col-xs-12

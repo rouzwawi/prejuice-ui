@@ -3,39 +3,36 @@
     .col-xs-12
       h1.white Din fördomsprofil
   div
-    .col-xs-12.card(style='position:relative; height:250px;')
-      .col-xs-3.chart-overlay(style='height:198px')
-        p.center Invandring
-      .col-xs-3.chart-overlay(style='height:198px')
-        p.center Bidragsfusk
-      .col-xs-3.chart-overlay(style='height:198px')
-        p.center Jämställdhet
-      .col-xs-3.chart-overlay(style='height:198px')
-        p.center Klyftor
-      .col-xs-12(style='width:100%; position:absolute; top:0px; left:0px;')
-        canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
-      .col-xs-12#details
-        h3 hej
-      //script(type='text/javascript').
-      //  $('#details').collapse();
+    .col-xs-12.card
+      //.col-xs-3.chart-overlay(style='height:198px')
+      //  p.center Invandring
+      //.col-xs-3.chart-overlay(style='height:198px')
+      //  p.center Bidragsfusk
+      //.col-xs-3.chart-overlay(style='height:198px')
+      //  p.center Jämställdhet
+      //.col-xs-3.chart-overlay(style='height:198px')
+      //  p.center Klyftor
+      figure#result-chart(style='width: 100%; height: 300px;', pj-chart, data='chart')
+      //.col-xs-12(style='width:100%; position:absolute; top:0px; left:0px;')
+      //  canvas(pj-chart, data='chart', height='200px', style='margin-top:40px;')
     
   div
     .col-xs-12.card.prejudice-factor
       h2 Din fördomsfaktor är
       p
-        | 62
+        | {{totalPercentage}}
         span %
       h3 Du är fördomsfull som
       i.fa.fa-arrow-down(style='font-size:80px;')
       
-    .col-xs-12.card-empty
+    .col-xs-12.card-empty.leader-list
       .prejudice-scale-container
         .prejudice-scale-row.col-xs-12(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
           span.badge {{i}}
           div(ng-show='i == selectedLeaderRow')
             //selected row
             .col-xs-3.leader-img
-              img(src='{{getLeader(i).img}}')
+              img(ng-src='{{getLeader(i).img}}')
             .col-xs-9.leader-data
               h4
                 | {{getLeader(i).name}}
@@ -54,7 +51,7 @@
                   i.fa.fa-caret-right(style='padding-left:4px;')
           div(ng-show='i != selectedLeaderRow')
             .col-xs-3.leader-img
-              img.leader(src='{{getLeader(i).img}}')
+              img.leader(ng-src='{{getLeader(i).img}}')
             .col-xs-8.leader-data(style='position:relative;')
               h4
                 | {{getLeader(i).name}}
@@ -77,7 +74,7 @@
       .col-xs-2
         h3
           i.fa.fa-link
-    .col-xs-12.card
+    .col-xs-12.card.hide
       p logged in: {{loggedIn}}
       p name: {{user.name}}
       p gender: {{user.gender}}

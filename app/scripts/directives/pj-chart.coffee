@@ -8,51 +8,16 @@ angular.module('prejuiceUiApp')
 
       chartData = scope.data
 
-      respChart = (selector, data, options) ->
+      chartCreated = false
 
-        generateChart = ->
-          # make chart width fit with its container
-          ww = selector.attr("width", $(container).width())
-          # Initiate new chart or Redraw
-          new Chart(ctx).Line data, options
-          return
+      generateChart = ->
+        if !chartCreated and chartData.data.main[0].data.length > 1  and chartData.data.comp[0].data.length > 1
+          myChart = new xChart('bar', chartData.data, '#result-chart', chartData.options)
+          console.log myChart
+            
+          
+          chartCreated = true
+          console.log 'created chart'
 
-        option =
-          scaleOverlay: false
-          scaleOverride: false
-          scaleSteps: null
-          scaleStepWidth: null
-          scaleStartValue: null
-          scaleLineColor: "rgba(0,0,0,.1)"
-          scaleLineWidth: 0
-          scaleShowLabels: false
-          scaleLabel: "<%=value%>"
-          scaleFontFamily: "'Oswald'"
-          scaleFontSize: 12
-          scaleFontStyle: "bold"
-          scaleFontColor: "#909090"
-          scaleShowGridLines: false
-          scaleGridLineColor: "rgba(0,0,0,.05)"
-          scaleGridLineWidth: 0
-          bezierCurve: true
-          pointDot: true
-          pointDotRadius: 5
-          pointDotStrokeWidth: 1
-          datasetStroke: true
-          datasetStrokeWidth: 3
-          datasetFill: true
-          animation: true
-          animationSteps: 60
-          animationEasing: "easeOutQuart"
-          onAnimationComplete: null
-
-        options = option if options is false or not options?
-        ctx = selector.get(0).getContext("2d")
-        container = $(selector).parent()
-        $(window).resize generateChart
-        scope.$watch generateChart
-
-        return
-
-      respChart $("canvas"), chartData
+      scope.$watch generateChart
   ]

@@ -14,7 +14,7 @@ angular.module('prejuiceUiApp')
         Math.round(value * 100)/100
 
       q = scope.step.question
-      $elm = $(elm)
+      $elm = jQuery(elm)
       slide = $elm.slider
         tooltip: 'always'
         min: q.minRange

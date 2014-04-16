@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .controller 'MainCtrl', ['$rootScope', '$scope', '$location', 'User', 'API', 'Alert', ($rootScope, $scope, $location, User, API, Alert) ->
+  .controller 'MainCtrl', ['$rootScope', '$scope', '$location', '$window','User', 'API', 'Alert', ($rootScope, $scope, $location, $window, User, API, Alert) ->
     
     $scope.quizReadyToStart = false
     $scope.quizState = 'ready'
@@ -13,6 +13,14 @@ angular.module('prejuiceUiApp')
     $scope.activeAnswerValue = 0
 
     answers = {}
+    
+    $scope.roundNumber = (num, dec)->
+      Number(num).toFixed(dec)
+      
+    $scope.getDotPosition = (question, val)->
+      result = ( (val - question.minRange) / (question.maxRange - question.minRange) ) * 100 + "%"
+      console.log (result + ' = ' + '( (' + val + ' - ' + question.minRange + ') / (' + question.maxRange + ' - ' + question.minRange + ') ) * 100')
+      return result
     
     $scope.onQuestionSliderValueUpdated = (val)->
       $scope.$apply ()->
@@ -57,6 +65,7 @@ angular.module('prejuiceUiApp')
       
     $scope.nextStep = ()->
       console.log 'next step'
+      
       if $scope.activeStep and $scope.activeStep.type is 'subQuestion'
         #save answer
         #Questions.registerAnswerForActiveSubQuestion($scope.activeAnswerValue)
@@ -77,15 +86,16 @@ angular.module('prejuiceUiApp')
           partialAnswers.id = $scope.activeStep.question.id
           console.log 'GET STATS: ', partialAnswers
           $scope.partialStats = API.answerStats.get partialAnswers, (res)->
+            console.log $scope.activeStep
             console.log res
+            
+        $window.scrollTo 0, 0
       else
-        console.log answers
         API.answers.save
           userToken: User.getUserToken()
           answers: answers
         , (res)->
-          $scope.quizState = 'completed'
-          console.log res
+          $scope.showResult()
         , (err)->
           Alert.add 'error', 'Could not post answers (' + err.status + ')'
     

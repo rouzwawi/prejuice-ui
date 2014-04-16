@@ -12,49 +12,52 @@ angular.module('prejuiceUiApp')
       id: userToken
     , (res)->
       $scope.answers = answers
+      $scope.totalPercentage = Number(answers.total*100).toFixed(0)
+      
+      $scope.leaderTypePosition = 11-Math.ceil(answers.total*10)
+      $scope.selectedLeaderRow = $scope.leaderTypePosition
+      
       mine = []
       all = []
       for q in [0...4]
         for i in [0...3]
-          mine.push Math.round(answers[q][i].myScore * 100)
-          all.push Math.round(answers[q][i].overall * 100)
-      $scope.chart.datasets[0].data = mine
-      $scope.chart.datasets[1].data = all
+          index = (q*3)+i+1
+          mine.push
+            x: index
+            y: Math.round(answers[q][i].myScore * 100)
+          all.push
+            x: index
+            y: Math.round(answers[q][i].overall * 100)
+            
+      $scope.chart.data.main[0].data = mine
+      $scope.chart.data.comp[0].data = mine
 
     , (err)->
       Alert.add 'error', 'Could not get answers (' + err.status + ')'
       
-    $scope.chart = 
-      labels: [
-        "1"
-        "2"
-        "3"
-        "4"
-        "5"
-        "6"
-        "7"
-        "8"
-        "9"
-        "10"
-        "11"
-        "12"
-      ]
-      datasets: [
-        {
-          fillColor: "rgba(220,220,220,0.0)"
-          strokeColor: "rgba(86,149,149,1)"
-          pointColor: "rgba(86,149,149,1)"
-          pointStrokeColor: "#fff"
+    
+    $scope.chart =
+      data:
+        xScale: "ordinal"
+        yScale: "linear"
+        yMin: 0
+        yMax: 100
+        type: "line"
+        main: [
+          className: ".pizza"
           data: []
-        }
-        {
-          fillColor: "rgba(151,187,205,0.5)"
-          strokeColor: "rgba(151,187,205,1)"
-          pointColor: "rgba(151,187,205,1)"
-          pointStrokeColor: "#fff"
+        ]
+        comp: [
+          className: ".pizza"
+          type: "line-dotted"
           data: []
-        }
-      ]
+        ]
+      options:
+        mouseover: (data, i)->
+          console.log data
+          console.log i
+    
+    
     
     $scope.selectLeaderRow = (pos)->
       $scope.selectedLeaderRow = pos
