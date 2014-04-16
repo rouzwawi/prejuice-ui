@@ -2,7 +2,7 @@
   div(ng-switch-when='questionIntro')
     include views/progress
     h1.quiz-title {{activeStep.question.category}}
-    p.quiz-body {{activeStep.question.introText}}
+    p.quiz-body(ng-bind-html='activeStep.question.introText')
     p.quiz-button
       a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Nu kör vi!
 
