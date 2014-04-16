@@ -28,9 +28,6 @@
     "jshint-stylish": "~0.1.3",
     "load-grunt-tasks": "~0.2.0",
     "time-grunt": "~0.2.1",
-    "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-ng-scenario": "~0.1.0",
-    "grunt-karma": "~0.6.2",
     "grunt-connect-proxy": "~0.1.7",
     "grunt-contrib-jade": "~0.10.0"
   },

@@ -98,11 +98,14 @@ module.exports = function (grunt) {
         proxies: [
             {
                 context: ['/api'],
-                host: 'localhost',
-                port: 8080,
+                host: 'prejuice.herokuapp.com',
+                port: 80,
                 https: false,
                 changeOrigin: false,
-                xforward: false
+                xforward: false,
+                headers: {
+                  "Host": "prejuice.herokuapp.com"
+                }
             }
         ]
       },
