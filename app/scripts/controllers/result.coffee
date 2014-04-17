@@ -77,6 +77,6 @@ angular.module('prejuiceUiApp')
       return leaders[leaderPosition-1]
       
     $scope.getLeaderPercentage = (leaderPosition)->
-      return (100 - (leaderPosition-1) * 10) + '-' + (100 - (leaderPosition * 10)) + '%'
+      return (100 - (leaderPosition * 10)) + '-' + (100 - ((leaderPosition-1) * 10)) + '%'
     
   ]
