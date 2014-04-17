@@ -23,39 +23,40 @@
     .row.quiz-answer(ng-repeat='stat in partialStats')
       .col-xs-12
         h5.quiz-answer-title {{activeStep.question.subQuestions[$index].question}}       
-        .slider.slider-horizontal
-          .slider-track
-            .slider-handle.round.min-range(style='left: 0%;')
-              .tooltip.bottom.in.min-range(style='top: 17px !important;')
-                .tooltip-arrow
-                .tooltip-inner
-                  .span.tooltip-help-text Min
-                  | 0
-            .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
-              .tooltip.top.in.answer(style='top: -47px !important;')
-                .tooltip-arrow
-                .tooltip-inner
-                  .span.tooltip-help-text Ditt Svar
-                  | {{stat.myAnswer}}
-            .slider-handle.round.average(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.average)}};')
-              .tooltip.bottom.in.average(style='top: 17px !important;')
-                .tooltip-arrow
-                .tooltip-inner
-                  .span.tooltip-help-text Medel
-                  | {{roundNumber(stat.average,1)}}
-            .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
-              .tooltip.bottom.in.correct(style='top: 17px !important;')
-                .tooltip-arrow
-                .tooltip-inner
-                  .span.tooltip-help-text Rätt Svar
-                  | {{stat.correct}}
-            .slider-handle.round.max-range(style='left: 100%;')
-              .tooltip.bottom.in.max-range(style='top: 17px !important;')
-                .tooltip-arrow
-                .tooltip-inner
-                  .span.tooltip-help-text Max
-                  | 100
-    
+        .slider-container
+          .slider.slider-horizontal
+            .slider-track
+              .slider-handle.round.min-range(style='left: 0%;')
+                .tooltip.bottom.in.min-range(style='top: 17px !important;')
+                  .tooltip-arrow
+                  .tooltip-inner
+                    .span.tooltip-help-text Min
+                    | 0
+              .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
+                .tooltip.top.in.answer(style='top: -47px !important;')
+                  .tooltip-arrow
+                  .tooltip-inner
+                    .span.tooltip-help-text Ditt Svar
+                    | {{stat.myAnswer}}
+              .slider-handle.round.average(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.average)}};')
+                .tooltip.bottom.in.average(style='top: 17px !important;')
+                  .tooltip-arrow
+                  .tooltip-inner
+                    .span.tooltip-help-text Medel
+                    | {{roundNumber(stat.average,1)}}
+              .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
+                .tooltip.bottom.in.correct(style='top: 17px !important;')
+                  .tooltip-arrow
+                  .tooltip-inner
+                    .span.tooltip-help-text Rätt Svar
+                    | {{stat.correct}}
+              .slider-handle.round.max-range(style='left: 100%;')
+                .tooltip.bottom.in.max-range(style='top: 17px !important;')
+                  .tooltip-arrow
+                  .tooltip-inner
+                    .span.tooltip-help-text Max
+                    | 100
+
     .row
       .col-xs-12
         ul
