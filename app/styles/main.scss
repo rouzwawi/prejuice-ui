@@ -277,21 +277,32 @@ body {
 }
 
 .slider .tooltip.min-range {
-  margin-left: -32px;
+  margin-left: -56px;
   margin-top: -27px;
 }
 
 .slider .tooltip.max-range {
-  margin-left: 5px;
+  margin-left: 12px;
   margin-top: -27px;
 }
 
-.slider .tooltip.min-range .tooltip-inner, .slider .tooltip.max-range .tooltip-inner {
+.slider .tooltip.min-range .tooltip-inner {
   background-color: #FFF;
   border: 0px;
   font-size: 12px;
   color: #000;
-  padding: 2px 8px;
+  padding: 1px 0px;
+  text-align: right;
+  width:50px;
+}
+
+.slider .tooltip.max-range .tooltip-inner {
+  background-color: #FFF;
+  border: 0px;
+  font-size: 12px;
+  color: #000;
+  padding: 1px 0px;
+  text-align: left;
 }
 
 .slider .tooltip.min-range .tooltip-inner .tooltip-help-text, .slider .tooltip.max-range .tooltip-inner .tooltip-help-text {
