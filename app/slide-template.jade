@@ -1,7 +1,7 @@
 .col-md-12.card(ng-switch='activeStep.type')
   div(ng-switch-when='questionIntro')
     include views/progress
-    h1.quiz-title {{activeStep.question.category}}
+    h1.quiz-title(ng-bind-html='activeStep.question.categorySafe')
     p.quiz-body(ng-bind-html='activeStep.question.introText')
     p.quiz-button
       a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Första frågan!
@@ -18,7 +18,7 @@
     include views/progress
     .row
       .col-xs-12
-        h1.quiz-title.done {{activeStep.question.category}}
+        h1.quiz-title.done(ng-bind-html='activeStep.question.categorySafe')
     .row.quiz-answer(ng-repeat='stat in partialStats')
       .col-xs-12
         h5.quiz-answer-title {{activeStep.question.subQuestions[$index].question}}       

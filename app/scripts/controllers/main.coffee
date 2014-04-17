@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .controller 'MainCtrl', ['$rootScope', '$scope', '$location', '$window','User', 'API', 'Alert', ($rootScope, $scope, $location, $window, User, API, Alert) ->
+  .controller 'MainCtrl', ['$rootScope', '$sce', '$scope', '$location', '$window','User', 'API', 'Alert', ($rootScope, $sce, $scope, $location, $window, User, API, Alert) ->
     
     $scope.quizReadyToStart = false
     $scope.quizState = 'ready'
@@ -44,6 +44,8 @@ angular.module('prejuiceUiApp')
       steps = []
       
       for question in questions
+        question.categorySafe = $sce.trustAsHtml(question.category)
+
         #question intro
         steps.push
           type: 'questionIntro'
