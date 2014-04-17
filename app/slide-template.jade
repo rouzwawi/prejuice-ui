@@ -19,7 +19,6 @@
     .row
       .col-xs-12
         h1.quiz-title.done {{activeStep.question.category}}
-        h3.quiz-answers-title Dina svar:
     .row.quiz-answer(ng-repeat='stat in partialStats')
       .col-xs-12
         h5.quiz-answer-title {{activeStep.question.subQuestions[$index].question}}       
@@ -30,8 +29,8 @@
                 .tooltip.bottom.in.min-range(style='top: 17px !important;')
                   .tooltip-arrow
                   .tooltip-inner
-                    .span.tooltip-help-text Min
-                    | 0
+                    .span.tooltip-help-text {{activeStep.question.subQuestions[$index].minRange}}
+                    | {{activeStep.question.subQuestions[$index].rangeUnit}}
               .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
                 .tooltip.top.in.answer(style='top: -47px !important;')
                   .tooltip-arrow
@@ -42,7 +41,7 @@
                 .tooltip.bottom.in.average(style='top: 17px !important;')
                   .tooltip-arrow
                   .tooltip-inner
-                    .span.tooltip-help-text Medel
+                    .span.tooltip-help-text Andras medelsvar
                     | {{roundNumber(stat.average,1)}}
               .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
                 .tooltip.bottom.in.correct(style='top: 17px !important;')
@@ -54,15 +53,15 @@
                 .tooltip.bottom.in.max-range(style='top: 17px !important;')
                   .tooltip-arrow
                   .tooltip-inner
-                    .span.tooltip-help-text Max
-                    | 100
+                    .span.tooltip-help-text {{activeStep.question.subQuestions[$index].maxRange}}
+                    | {{activeStep.question.subQuestions[$index].rangeUnit}}
 
     .row
       .col-xs-12
         ul
-          li(ng-repeat='statement in activeStep.question.postStatements') {{statement}}
+          li.facts(ng-repeat='statement in activeStep.question.postStatements') {{statement}}
       .col-xs-12
-        p Källa: {{activeStep.question.source}}
+        p.source Källa: {{activeStep.question.source}}
     
     .row
       .col-xs-12
