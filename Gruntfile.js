@@ -108,9 +108,6 @@ module.exports = function (grunt) {
                 https: false,
                 changeOrigin: false,
                 xforward: false,
-                headers: {
-                  "Host": "prejuice.herokuapp.com"
-                }
             }
         ]
       },
