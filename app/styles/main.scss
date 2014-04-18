@@ -367,11 +367,37 @@ p.source {
 }
 
 .chart-overlay {
-  font-size: 20px;
+  font-size: 10px;
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
   margin-top:10px;
-  border-right: 1px solid #efefef;
+  border-right: 3px solid #efefef;
+  padding: 0px;
+}
+
+.chart-overlay:first-child {
+  border-left: 3px solid #efefef; 
+}
+
+.prejuice .xchart .color0.mine path.line {
+  stroke: #494949;
+}
+
+.prejuice .xchart .color0.mine circle {
+  fill: #606060;
+}
+
+.prejuice .xchart .color0.all path.line {
+  stroke: #bababa;
+}
+
+.prejuice .xchart .color0 .fill {
+  fill: rgba(186, 186, 186, 0.1);
+  pointer-events: none;
+}
+
+#result-chart .scale {
+  display:none;
 }
 
 .prejudice-factor {
@@ -602,5 +628,9 @@ p.source {
     
     .prejuice h3 {
       font-size:24px;
+    }
+    
+    .chart-overlay {
+      font-size: 20px;
     }
 }

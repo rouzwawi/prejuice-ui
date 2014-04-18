@@ -23,6 +23,16 @@ angular.module('prejuiceUiApp')
       
       $scope.categoryIndex = Number(Math.floor(percentage*4+1)).toFixed(0)
     
+    $scope.getIntroNextText = ()->
+      if $scope.activeStepIndex < 3
+        return 'Första frågan!'
+      return 'Nästa fråga'
+      
+    $scope.getOutroNextText = ()->
+      if $scope.activeStepIndex > 18
+        return 'Kalkylera fördomsprofil'
+      return 'Nästa fördom!'
+    
     $scope.roundNumber = (num, dec)->
       Number(num).toFixed(dec)
       

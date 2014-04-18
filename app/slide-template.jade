@@ -4,7 +4,7 @@
     h1.quiz-title(ng-bind-html='activeStep.question.categorySafe')
     p.quiz-body(ng-bind-html='activeStep.question.introText')
     p.quiz-button
-      a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Första frågan!
+      a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') {{getIntroNextText()}}
 
   div.sub-question(ng-switch-when='subQuestion')
     include views/progress
@@ -66,4 +66,4 @@
     .row
       .col-xs-12
         p.quiz-button
-          a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') Nästa fördom!
+          a.btn.btn-lg.btn-prejuice(ng-click='nextStep()') {{getOutroNextText()}}
