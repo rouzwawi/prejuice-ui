@@ -107,7 +107,10 @@ module.exports = function (grunt) {
                 },
                 https: false,
                 changeOrigin: false,
-                xforward: false
+                xforward: false,
+                headers: {
+                  "Host": "prejuice.herokuapp.com"
+                }
             }
         ]
       },
@@ -480,7 +483,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'rev',
+    // 'rev',
     'usemin',
     'htmlmin'
   ]);
