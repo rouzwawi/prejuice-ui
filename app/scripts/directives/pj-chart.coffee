@@ -12,8 +12,9 @@ angular.module('prejuiceUiApp')
 
       generateChart = ->
         if !chartCreated and chartData.data.main[0].data.length > 1  and chartData.data.comp[0].data.length > 1
-          myChart = new xChart('bar', chartData.data, '#result-chart', chartData.options)
+          console.log 'create chart'
           chartCreated = true
+          myChart = new xChart('bar', chartData.data, '#result-chart', chartData.options)
           
       scope.$watch generateChart
   ]

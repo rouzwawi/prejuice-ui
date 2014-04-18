@@ -385,7 +385,7 @@ _scales.xy = function (self, data, xType, yType) {
       .style('opacity', 0)
       .attr('cx', storage.lineX)
       .attr('cy', storage.lineY)
-      .attr('r', 5)
+      .attr('r', 8)
       .on('mouseover', callbacks.mouseover)
       .on('mouseout', callbacks.mouseout)
       .on('click', callbacks.click);

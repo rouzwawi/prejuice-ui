@@ -13,7 +13,7 @@
   fill: none;
 }
 .xchart .axis .tick line {
-  stroke: #EEE;
+  /*stroke: #EEE;*/
   stroke-width: 1px;
 }
 .xchart .axis text {
