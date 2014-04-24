@@ -29,4 +29,10 @@ angular.module('prejuiceUiApp')
           res
       $elm.on 'slide', (slideEvt)->
         update rounder slideEvt.value
+       
+      minIndicator = '<div class="slider-handle round min-range"><div class="tooltip in min-range"><div class="tooltip-arrow"></div><div class="tooltip-inner"><div class="span tooltip-help-text">' + q.minRange + '</div>' + q.rangeUnit + '</div></div></div>' 
+      $elm.before(minIndicator)
+      
+      maxIndicator = '<div class="slider-handle round max-range"><div class="tooltip in max-range"><div class="tooltip-arrow"></div><div class="tooltip-inner"><div class="span tooltip-help-text">' + q.maxRange + '</div>' + q.rangeUnit + '</div></div></div>'
+      $elm.after(maxIndicator)
   ])
