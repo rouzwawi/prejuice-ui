@@ -1,4 +1,4 @@
-.main(ng-show='quizReadyToStart')
+.main
   div(ng-switch='quizState', ng-animate='slide')
 
     .row(ng-switch-when='ready')
@@ -15,7 +15,7 @@
           span.highlight fördomsprofil
           | .
         p.center(style='margin-top:20px')
-          a.btn.btn-lg.btn-prejuice#startQuizButton(ng-click='startQuiz()') Starta testet!
+          button.btn.btn-lg.btn-prejuice#startQuizButton(ng-click='startQuiz()', ng-disabled='quizReadyToStart == false') {{quizReadyToStart | iif : "Starta testet!" : "Laddar testet..."}}
       
     .row(ng-switch-when='running')
       .col-md-12

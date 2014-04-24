@@ -36,7 +36,7 @@ html.no-js
         | to improve your experience.
     
     section.section-alerts
-      .alert.alert-danger(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)')
+      .alert.alert-danger.hide.ng-hide(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)', ng-show='alerts.length')
         p {{alert.msg}}
 
     .container(ng-view='')
@@ -78,6 +78,7 @@ html.no-js
     script(src='scripts/services/alert.js')
     script(src='scripts/directives/pj-slider.js')
     script(src='scripts/directives/pj-chart.js')
+    script(src='scripts/filters/iif.js')
     
     script(src='scripts/models/leaders.js')
     // endbuild
