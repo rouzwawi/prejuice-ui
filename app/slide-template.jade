@@ -8,7 +8,7 @@
 
   div.sub-question(ng-switch-when='subQuestion')
     include views/progress
-    h3 {{activeStep.question.question}}
+    h3(ng-bind-html='activeStep.question.questionSafe')
     form.center
       input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')
     p.quiz-button
