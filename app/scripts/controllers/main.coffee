@@ -64,6 +64,8 @@ angular.module('prejuiceUiApp')
         
         #sub questions
         for subQuestion in question.subQuestions
+          subQuestion.questionSafe = $sce.trustAsHtml(subQuestion.question)
+          subQuestion.inDepthSafe = $sce.trustAsHtml(subQuestion.inDepth)
           steps.push
             type: 'subQuestion'
             question: subQuestion

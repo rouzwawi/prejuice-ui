@@ -8,7 +8,7 @@
 
   div.sub-question(ng-switch-when='subQuestion')
     include views/progress
-    h3 {{activeStep.question.question}}
+    h3(ng-bind-html='activeStep.question.questionSafe')
     form.center
       .slider-handle.round.min-range(style='left: 0%;')
         .tooltip.bottom.in.min-range(style='top: 17px !important;')
