@@ -51,7 +51,7 @@ angular.module('prejuiceUiApp')
       Facebook.ui
         method: 'feed'
         link: 'http://fordomstestet.se/#/' + userToken
-        caption: 'An example caption'
+        caption: 'Jag är lika fördomsfull som ' + leaders[$scope.selectedLeaderRow-1].name
       , (response)->
         console.log 'shared', response
   ]
