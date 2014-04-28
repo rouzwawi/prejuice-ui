@@ -152,6 +152,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff74b4b4', endColorstr='#ff569595', GradientType=0);
   border: 1px solid #123333;
   opacity: 0.9;
+  z-index:1100;
 }
 
 .question-outro .slider .slider-handle.correct {
@@ -192,6 +193,9 @@ body {
   background-image: linear-gradient(to bottom,#666666 0,#2C2C2C 100%);
   opacity: 1;
   border: 0px;
+  margin-left:0px;
+  margin-top:0px;
+  z-index:1000;
 }
 
 .sub-question .slider .slider-handle.max-range {
@@ -200,6 +204,9 @@ body {
   background-image: linear-gradient(to bottom,#666666 0,#2C2C2C 100%);
   opacity: 1;
   border: 0px;
+  margin-left:0px;
+  margin-top:0px;
+  z-index:1000;
 }
 
 .slider-track .slider-handle.round {
@@ -343,22 +350,24 @@ body {
 }
 
 .sub-question .slider .tooltip.min-range .tooltip-inner {
-  background-color: #FFF;
+  background-color: transparent;
   border: 0px;
   font-size: 12px;
   color: #000;
   padding: 1px 0px;
   text-align: right;
   width:40px;
+  margin-top:78px;
 }
 
 .sub-question .slider .tooltip.max-range .tooltip-inner {
-  background-color: #FFF;
+  background-color: transparent;
   border: 0px;
   font-size: 12px;
   color: #000;
   padding: 1px 0px;
   text-align: left;
+  margin-top:78px;
 }
 
 .question-outro .slider .tooltip.min-range .tooltip-inner .tooltip-help-text, .question-outro .slider .tooltip.max-range .tooltip-inner .tooltip-help-text {
@@ -387,6 +396,9 @@ body {
   border-width: 0 3px 3px;
 }
 
+.slider .slider-handle {
+  border-radius: 6px;
+}
 
 .slider .tooltip .tooltip-arrow {
   border-top-color: #74b4b4;
@@ -413,6 +425,7 @@ p.source {
   border-color: #123333;
   background-color: #74b4b4;
   color: white;
+  margin-top:12px;
 }
 
 .card {
@@ -602,7 +615,19 @@ p.source {
   border-top: none;
 }
 
+ul.howwecalc li {
+  margin-left:-15px;
+  margin-top:8px;
+  font-weight:300;
+}
 
+p.sources, ul.sources {
+  font-weight:300;
+}
+
+h5.sources {
+  margin-top: 20px;
+}
 
 
 

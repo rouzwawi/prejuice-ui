@@ -53,7 +53,7 @@
     title: 'Fiktiv karaktär, Sverige'
     quote: 'Lever vi inte i ett fritt land kanske? Får man inte gå hur man vill?'
     source: 'Från boken Pippi Långstrum av Astrid Lindgren, 1945'
-    more: 'http://www.astridlindgren.se/mer-fakta/citat/pippi'
+    more: 'http://sv.wikipedia.org/wiki/Pippi_L%C3%A5ngstrump'
     img: 'images/leaders/pippi.png'
   ,
     name: 'Harvey Milk'
@@ -61,7 +61,7 @@
     title: 'Politiker och förkämpe för homosexuellas rättigheter, USA'
     quote: 'Det behövs inga kompromisser för att skänka folk sina rättigheter … respekt för individen kostar inte pengar. Det behövs ingen politisk uppgörelse för att skänka människor sin frihet. Det behövs ingen utredning för att stoppa förtrycket.'
     source: 'Okänd originalkälla, hämtat från GoodReads, fritt översatt'
-    more: 'http://www.goodreads.com/quotes/223676-it-takes-no-compromise-to-give-people-their-rights-it-takes'
+    more: 'http://sv.wikipedia.org/wiki/Harvey_Milk'
     img: 'images/leaders/harvey.png'
   ,
     name: 'Martin Luther King Jr'
@@ -69,7 +69,7 @@
     title: 'Pastor och ledare i människorättsrörelsen, USA'
     quote: 'Mörker kan inte fördriva mörker: bara ljus kan göra det. Hat kan inte fördriva hat: bara kärlek kan göra det.'
     source: 'Från boken A Testament of Hope: The Essential Writings and Speeches, 2003, fritt översatt'
-    more: 'http://www.goodreads.com/quotes/943-darkness-cannot-drive-out-darkness-only-light-can-do-that'
+    more: 'http://sv.wikipedia.org/wiki/Martin_Luther_King'
     img: 'images/leaders/martin.png'
   ,
     name: 'Nelson Mandela'
@@ -77,6 +77,6 @@
     title: 'Advokat, frihetskämpe och politiker, Sydafrika'
     quote: 'Jag gillar vänner som kan tänka självständigt för dom tenderar hjälpa dig att se problem från alla perspektiv.'
     source: 'Okänd originalkälla, hämtat från USA Today, fritt översatt'
-    more: 'http://www.usatoday.com/story/news/nation-now/2013/12/05/nelson-mandela-quotes/3775255/'
+    more: 'http://sv.wikipedia.org/wiki/Nelson_Mandela'
     img: 'images/leaders/nelson.png'
   ]

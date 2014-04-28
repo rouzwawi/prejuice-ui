@@ -55,8 +55,8 @@
               p.leader-source
                 | - {{getLeader(i).source}}
                 br
-                a
-                  | Läs mer här
+                a(href='{{getLeader(i).more}}', target='_blank')
+                  | Mer om {{getLeader(i).name}}
                   i.fa.fa-caret-right(style='padding-left:4px;')
           div(ng-show='i != selectedLeaderRow')
             .col-xs-3.leader-img
@@ -92,12 +92,32 @@
     .col-xs-12.card
       .col-xs-6
         h4 Så räknar vi
-        ul(style='list-style-type: none;')
-          li Mauris posuere lacus a tortor porta mollis. Quisque ac diam sapien.
-          li Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius vel lorem eu imperdiet. Etiam egestas tortor lacus, sed fermentum orci volutpat ut.
-          li Fusce vulputate consequat imperdiet. Nullam semper sapien ut dictum bibendum.
+        ul.howwecalc
+          li Ju mer fel du har på en fråga, desto större utslag på din fördomsfaktor.
+          li Frågorna är dock också viktade efter hur fel andra som gjort testet har.
+          li Ju mer fel folk har i allmänhet, desto större vikt fäster vi vid frågan.
+          li Om du har mycket fel på en fråga där andra har haft mycket fel ger det med andra ord stort utslag på din fördomsfaktor.
+          li Om du tvärtom har nästan rätt på en fråga där andra har mycket fel, ja då är du på god väg mot ett gott resultat!
       .col-xs-6
         h4 Källor
-        ul
-          li Statistiska centralbyrån
-          li SVT Pejl
+        p.sources Alla faktauppgifter som ligger till grund för testet är hämtade från svenska myndigheter.
+        h5.sources Fördom 1: Invandring och kriminalitet
+        ul.sources
+          li
+            a(href='http://www.bra.se/download/18.cba82f7130f475a2f1800012697/2005_17_brottslighet_bland_personer_fodda_sverige_och_utlandet.pdf', target='_blank') Brottsförebyggande rådet, BRÅ, 2005:17
+        h5.sources Fördom 2: Bidragsfusk
+        ul.sources
+          li
+            a(href='http://www.esv.se/PageFiles/1511/gemensam-skrivelse.pdf', target='_blank') Ekonomistyrningsverket, ESV, 2011:11
+        h5.sources Fördom 3: Jämställdhet
+        ul.sources
+          li
+            a(href='http://www.scb.se/sv_/Hitta-statistik/Statistikdatabasen/Variabelvaljare/?px_tableid=ssd_extern%3aLonStandVagdYrk&rxid=6c156e05-e761-4758-bd45-7ead42a3538c', target='_blank') Statistiska centralbyrån, SCB, SSYK 2012
+          li
+            a(href='http://www.mi.se/files/PDF-er/att_bestalla/loneskillnader/skillnaden12.pdf', target='_blank') Medlingsinstitutet, MI, 2012
+        h5.sources Fördom 4: Ökande klyftor
+        ul.sources
+          li
+            a(href='http://www.scb.se/sv_/Hitta-statistik/Statistik-efter-amne/Hushallens-ekonomi/Inkomster-och-inkomstfordelning/Hushallens-ekonomi-HEK/7289/7296/Inkomster-19752011/163550/', target='_blank') Statistiska centralbyrån, SCB, HEK Inkomstfördelning 1975-2011
+
+
