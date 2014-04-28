@@ -9,6 +9,11 @@
   div.sub-question(ng-switch-when='subQuestion')
     include views/progress
     h3(ng-bind-html='activeStep.question.questionSafe')
+    .in-depth-container
+      .toggle-container
+        span.in-depth-toggle(data-toggle='collapse', data-target='#in-depth-panel')
+          | mer info
+      #in-depth-panel.collapse(ng-bind-html='activeStep.question.inDepthSafe')
     form.center
       input.slider(pj-slider, step='activeStep', on-slider-value-updated='onQuestionSliderValueUpdated(val)', type='text')
       
