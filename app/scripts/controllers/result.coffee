@@ -5,9 +5,9 @@ angular.module('prejuiceUiApp')
     
     $scope.leaderTypePosition = 2
     $scope.selectedLeaderRow = 2
-    
+
     userToken = $routeParams.userToken
-    
+
     questions = API.questions.get (res)->
       $scope.questions = res.questions
     

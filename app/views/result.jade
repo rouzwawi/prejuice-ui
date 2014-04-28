@@ -76,10 +76,12 @@
         h3 Dela med dina vänner
       .col-xs-2
         h3
-          i.fa.fa-facebook(ng-click='getLoginStatus()')
+          a(href='', ng-click='getLoginStatus()')
+            i.fa.fa-facebook
       .col-xs-2
         h3
-          i.fa.fa-twitter
+          a(href='{{tweetLink}}', target='_blank')
+            i.fa.fa-twitter
       .col-xs-2
         h3
           i.fa.fa-link

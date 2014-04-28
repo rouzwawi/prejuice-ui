@@ -5,6 +5,9 @@ angular.module('prejuiceUiApp')
 
     # Here, usually you should watch for when Facebook is ready and loaded
     $scope.$watch ()->
+      $scope.shareLink = 'http%3A%2F%2Ffordomstestet.se%2F%23%2F' + userToken
+      $scope.shareText = 'Jag är lika fördomsfull som ' + leaders[$scope.selectedLeaderRow-1].name
+      $scope.tweetLink = 'https://twitter.com/share?text=' + encodeURIComponent($scope.shareText) + '&hashtags=f%C3%B6rdomstestet.se&url=' + $scope.shareLink
       Facebook.isReady() # This is for convenience, to notify if Facebook is loaded and ready to go.
     , (newVal)->
       #console.log 'facebook ready', newVal
@@ -51,7 +54,7 @@ angular.module('prejuiceUiApp')
       Facebook.ui
         method: 'feed'
         link: 'http://fordomstestet.se/#/' + userToken
-        caption: 'Jag är lika fördomsfull som ' + leaders[$scope.selectedLeaderRow-1].name
+        caption: $scope.shareText
       , (response)->
         #console.log 'shared', response
   ]
