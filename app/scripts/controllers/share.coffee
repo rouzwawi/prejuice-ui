@@ -7,7 +7,7 @@ angular.module('prejuiceUiApp')
     $scope.$watch ()->
       Facebook.isReady() # This is for convenience, to notify if Facebook is loaded and ready to go.
     , (newVal)->
-      console.log 'facebook ready', newVal
+      #console.log 'facebook ready', newVal
       $scope.facebookReady = true # You might want to use this to disable/show/hide buttons and else
 
     # From now and on you can use the Facebook service just as Facebook api says
@@ -22,14 +22,14 @@ angular.module('prejuiceUiApp')
           # The person cancelled the login dialog
 
     $scope.facebookShare = ()->
-      console.log 'i should login'
+      #console.log 'i should login'
       Facebook.login (response)->
-        console.log response
+        #console.log response
 
     $scope.getLoginStatus = ()->
-      console.log 'get status', Facebook.isReady()
+      #console.log 'get status', Facebook.isReady()
       Facebook.getLoginStatus (response)->
-        console.log 'status', response
+        #console.log 'status', response
         if response.status is 'connected'
           $scope.$apply ()->
             $scope.loggedIn = true
@@ -40,7 +40,7 @@ angular.module('prejuiceUiApp')
             $scope.login()
 
     $scope.me = ()->
-      console.log 'call me'
+      #console.log 'call me'
       Facebook.api '/me', (response)->
         $scope.$apply ()->
           # Here you could re-check for user status (just in case)
@@ -53,5 +53,5 @@ angular.module('prejuiceUiApp')
         link: 'http://fordomstestet.se/#/' + userToken
         caption: 'Jag är lika fördomsfull som ' + leaders[$scope.selectedLeaderRow-1].name
       , (response)->
-        console.log 'shared', response
+        #console.log 'shared', response
   ]
