@@ -5,6 +5,9 @@ angular.module('prejuiceUiApp')
     
     $scope.resultsReady = false
     
+    #Set page title
+    document.title = "Fördomstestet: Din fördomsprofil"
+
     $scope.leaderTypePosition = 2
     $scope.selectedLeaderRow = 2
 
@@ -137,6 +140,30 @@ angular.module('prejuiceUiApp')
       return leaders[leaderPosition-1]
       
     $scope.getLeaderPercentage = (leaderPosition)->
+
       return (100 - ((leaderPosition-1) * 10)) + '-' + (100 - (leaderPosition * 10)) + '%'
+
+    #Google Analytics
+    ((i, s, o, g, r, a, m) ->
+      i["GoogleAnalyticsObject"] = r
+      i[r] = i[r] or ->
+        (i[r].q = i[r].q or []).push arguments
+        return
+
+
+      i[r].l = 1 * new Date()
+
+      a = s.createElement(o)
+      m = s.getElementsByTagName(o)[0]
+
+      a.async = 1
+      a.src = g
+      m.parentNode.insertBefore a, m
+      return
+    ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
+    ga "create", "UA-50452169-1", "fordomstestet.se"
+    ga "send", "pageview"
+
+    #console.log 'Google Analytics triggered, passed: ' + document.title
     
   ]
