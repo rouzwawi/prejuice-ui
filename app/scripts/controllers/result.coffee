@@ -141,7 +141,7 @@ angular.module('prejuiceUiApp')
       
     $scope.getLeaderPercentage = (leaderPosition)->
 
-      return (100 - ((leaderPosition-1) * 10)) + '-' + (100 - (leaderPosition * 10)) + '%'
+      return (100 - (leaderPosition * 10)) + '-' + (100 - ((leaderPosition-1) * 10)) + '%'
 
     #Google Analytics
     ((i, s, o, g, r, a, m) ->
