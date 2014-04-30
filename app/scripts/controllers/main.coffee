@@ -60,7 +60,7 @@ angular.module('prejuiceUiApp')
         steps.push
           type: 'questionIntro'
           question: question
-        console.log question
+        #console.log question
         
         #sub questions
         for subQuestion in question.subQuestions
@@ -78,15 +78,12 @@ angular.module('prejuiceUiApp')
       
       $scope.steps = steps
       $scope.activeStepIndex = -1
-      $scope.nextStep()
       $scope.quizReadyToStart = true
-    
-    $scope.startQuiz = ()->
-      $scope.quizState = 'running'
-      
-    $scope.nextStep = ()->
-      #console.log 'next step'
 
+      #Set initial title
+      document.title = 'Fördomstestet'
+
+      #Make initial Google analytics call
       #Google Analytics
       ((i, s, o, g, r, a, m) ->
         i["GoogleAnalyticsObject"] = r
@@ -108,12 +105,19 @@ angular.module('prejuiceUiApp')
       ga "create", "UA-50452169-1", "fordomstestet.se"
       ga "send", "pageview"
 
-      #console.log 'Google Analytics triggered'
+      #console.log 'Google Analytics triggered, passed: ' + document.title
+    
+    $scope.startQuiz = ()->
+      $scope.quizState = 'running'
+      $scope.nextStep()
       
+    $scope.nextStep = ()->
+      #console.log 'next step'
+
       if $scope.activeStep and $scope.activeStep.type is 'subQuestion'
         #save answer
         #Questions.registerAnswerForActiveSubQuestion($scope.activeAnswerValue)
-        console.log 'SAVE: ', $scope.activeStep.coordinates, $scope.activeAnswerValue
+        #console.log 'SAVE: ', $scope.activeStep.coordinates, $scope.activeAnswerValue
         cs = $scope.activeStep.coordinates
         answers[cs[0]] ?= {}
         answers[cs[0]][cs[1]] = $scope.activeAnswerValue
@@ -123,19 +127,48 @@ angular.module('prejuiceUiApp')
         updateProgress()
         $scope.activeStep = $scope.steps[$scope.activeStepIndex]
 
+        if $scope.activeStep.type is 'questionIntro'
+          document.title = 'Fördomstestet: Fördom ' + (Math.ceil($scope.activeStepIndex/5)+1)
+
         if $scope.activeStep.type is 'subQuestion'
           $scope.activeAnswerValue = $scope.activeStep.question.initial
+          document.title = 'Fördomstestet: Fråga ' + ($scope.activeStepIndex-(Math.floor($scope.activeStepIndex/5)*2))
 
         if $scope.activeStep.type is 'questionOutro'
           partialAnswers = $.extend {}, answers[$scope.activeStep.question.id]
           partialAnswers.id = $scope.activeStep.question.id
-          console.log 'GET STATS: ', partialAnswers
+          document.title = 'Fördomstestet: Facit på fördom ' + Math.ceil($scope.activeStepIndex/5)
+          #console.log 'GET STATS: ', partialAnswers
           $scope.partialStats = API.answerStats.get partialAnswers, (res)->
-            console.log $scope.activeStep
-            console.log res
+            #console.log $scope.activeStep
+            #console.log res
             
         $window.scrollTo 0, 0
+
+        #Google Analytics
+        ((i, s, o, g, r, a, m) ->
+          i["GoogleAnalyticsObject"] = r
+          i[r] = i[r] or ->
+            (i[r].q = i[r].q or []).push arguments
+            return
+
+
+          i[r].l = 1 * new Date()
+
+          a = s.createElement(o)
+          m = s.getElementsByTagName(o)[0]
+
+          a.async = 1
+          a.src = g
+          m.parentNode.insertBefore a, m
+          return
+        ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
+        ga "create", "UA-50452169-1", "fordomstestet.se"
+        ga "send", "pageview"
+
+        #console.log 'Google Analytics triggered, passed: ' + document.title
       else
+        document.title = 'Fördomstestet: Din fördomsprofil'
         API.answers.save
           userToken: User.getUserToken()
           answers: answers
