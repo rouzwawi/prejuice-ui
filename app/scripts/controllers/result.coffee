@@ -59,10 +59,10 @@ angular.module('prejuiceUiApp')
         axisPaddingRight: 0
         axisPaddingLeft: 0
         axisPaddingBottom: 0
-        paddingTop: 20
-        paddingLeft: 0
+        paddingTop: 50
+        paddingLeft: 40
         paddingRight: 0
-        paddingBottom: 0
+        paddingBottom: 15
         #showAllXTicks: true
         mouseover: (data, i)->
           questionParentIndex = Math.floor(i / 3)
@@ -70,15 +70,18 @@ angular.module('prejuiceUiApp')
           subQuestion = $scope.questions[questionParentIndex].subQuestions[subQuestionIndex]
           subAnswer = ($scope.answers[questionParentIndex])[subQuestionIndex]
           $scope.$apply ()->
+            $scope.hoverRangeUnit = subQuestion.rangeUnit
             $scope.hoverQuestion = subQuestion.question
             $scope.hoverMyAnswer = subAnswer.myAnswer
             $scope.hoverMyScore = Math.round(subAnswer.myScore*100)
             $scope.hoverCorrect = subAnswer.correct
-            $scope.hoverAverage = subAnswer.average
+            $scope.hoverAverage = (Math.round(subAnswer.average*10) / 10)
             $scope.hoverOverall = Math.round(subAnswer.overall*100)
           $('g.mine circle').eq(i).css('fill','#74b4b4')
         mouseout: (data, i)->
           $('g.mine circle').eq(i).css('fill','#606060')
+        tickFormatY: (y)->
+          return y + '%'
     
     
     $scope.selectLeaderRow = (pos)->

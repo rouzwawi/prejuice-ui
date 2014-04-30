@@ -15,5 +15,6 @@ angular.module('prejuiceUiApp')
           chartCreated = true
           myChart = new xChart('bar', chartData.data, '#result-chart', chartData.options)
           
+          
       scope.$watch generateChart
   ]

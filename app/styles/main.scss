@@ -463,17 +463,50 @@ p.source {
   padding: 0px 20px 0px 0px;
 }
 
+.chart-overlay-container {
+  position:absolute;
+  pointer-events:none;
+  padding-left:88px;
+  padding-right:48px;
+  top:20px;
+  left:0px;
+  height:100px;
+}
+
+.chart-container {
+  clear:both;
+  margin-top:20px;
+}
+
 .chart-overlay {
   font-size: 10px;
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
   margin-top:10px;
-  border-right: 3px solid #efefef;
+  border-right: 3px solid rgba(239, 239, 239, 0.5);
   padding: 0px;
+  height:300px;
+  pointer-events: none;
 }
 
 .chart-overlay:first-child {
-  border-left: 3px solid #efefef; 
+  border-left: 3px solid rgba(239, 239, 239, 0.5); 
+}
+
+.chart-x-axis {
+  padding-left: 53px;
+  padding-right: 4px;
+  margin-top: 5px;
+}
+
+.chart-x-axis-item {
+  text-align:center;
+  font-family: 'Oswald', sans-serif;
+  color: #ccc;
+}
+
+#result-chart {
+  height:300px;
 }
 
 .prejuice .xchart .color0.mine path.line {
@@ -493,9 +526,15 @@ p.source {
   pointer-events: none;
 }
 
-#result-chart .scale {
+.prejuice .xchart .axis.axisX {
   display:none;
 }
+
+.prejuice .xchart .axis text {
+  font-family: 'Oswald', sans-serif;
+  fill: #ccc;
+}
+
 
 .prejudice-factor {
   text-align:center;
@@ -678,6 +717,10 @@ h5.sources {
 
 .container-narrow > hr {
     margin: 30px 0;
+}
+
+hr {
+  clear:both;
 }
 
 /* Main marketing message and sign up button */
