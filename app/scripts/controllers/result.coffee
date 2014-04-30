@@ -3,6 +3,8 @@
 angular.module('prejuiceUiApp')
   .controller 'ResultCtrl', ['$scope', '$routeParams', 'API', 'Alert', ($scope, $routeParams, API, Alert) ->
     
+    $scope.resultsReady = false
+    
     $scope.leaderTypePosition = 2
     $scope.selectedLeaderRow = 2
 
@@ -34,9 +36,28 @@ angular.module('prejuiceUiApp')
       $scope.chart.data.main[0].data = all
       $scope.chart.data.comp[0].data = mine
       
+      $scope.resultsReady = true
+      
+      setTimeout ()->
+        $('.prejudice-factor').addClass('animated flipInY')
+      , 500
+      
+      $(window).scroll(()->
+        $('.result-container-header.universe').each((e,d)->
+          el = $(d)
+          el.addClass('animated fadeIn')
+        )
+        
+        $('.prejudice-scale-container .prejudice-scale-row:in-viewport').each((e,d)->
+          el = $(d)
+          el.addClass('animated fadeIn')
+        )
+      )
+      
     , (err)->
       Alert.add 'error', 'Could not get answers (' + err.status + ')'
-      
+    
+    activeCircleElem = null
     
     $scope.chart =
       data:
@@ -64,25 +85,41 @@ angular.module('prejuiceUiApp')
         paddingRight: 0
         paddingBottom: 15
         #showAllXTicks: true
-        mouseover: (data, i)->
+        click: (data, i)->
           questionParentIndex = Math.floor(i / 3)
           subQuestionIndex = Math.floor(i % 3)
-          subQuestion = $scope.questions[questionParentIndex].subQuestions[subQuestionIndex]
-          subAnswer = ($scope.answers[questionParentIndex])[subQuestionIndex]
           $scope.$apply ()->
-            $scope.hoverRangeUnit = subQuestion.rangeUnit
-            $scope.hoverQuestion = subQuestion.question
-            $scope.hoverMyAnswer = subAnswer.myAnswer
-            $scope.hoverMyScore = Math.round(subAnswer.myScore*100)
-            $scope.hoverCorrect = subAnswer.correct
-            $scope.hoverAverage = (Math.round(subAnswer.average*10) / 10)
-            $scope.hoverOverall = Math.round(subAnswer.overall*100)
-          $('g.mine circle').eq(i).css('fill','#74b4b4')
-        mouseout: (data, i)->
-          $('g.mine circle').eq(i).css('fill','#606060')
+            setActiveHoverQuestion(questionParentIndex, subQuestionIndex, i, 0)
+        #mouseout: (data, i)->
+        #  $('g.mine circle').eq(i).css('fill','#606060')
+        #  $('g.mine circle').eq(i).attr('r','8')
         tickFormatY: (y)->
           return y + '%'
     
+    setActiveHoverQuestion = (questionParentIndex, subQuestionIndex, i, delay)->
+      subQuestion = $scope.questions[questionParentIndex].subQuestions[subQuestionIndex]
+      subAnswer = ($scope.answers[questionParentIndex])[subQuestionIndex]
+      $scope.hoverRangeUnit = subQuestion.rangeUnit
+      $scope.hoverQuestion = subQuestion.question
+      $scope.hoverMyAnswer = subAnswer.myAnswer
+      $scope.hoverMyScore = Math.round(subAnswer.myScore*100)
+      $scope.hoverCorrect = subAnswer.correct
+      $scope.hoverAverage = (Math.round(subAnswer.average*10) / 10)
+      $scope.hoverOverall = Math.round(subAnswer.overall*100)
+      clearOldActiveCircleElem()
+      setTimeout ()->
+        activeCircleElem = $('g.mine circle').eq(i)
+        activeCircleElem.css('fill','#74b4b4')
+        activeCircleElem.attr('r','12')
+      , delay
+    
+    $scope.chartCreated = ()->
+      setActiveHoverQuestion(0,0,0,500)
+    
+    clearOldActiveCircleElem = ()->
+      if activeCircleElem != null
+        activeCircleElem.css('fill','#606060')
+        activeCircleElem.attr('r','8');
     
     $scope.selectLeaderRow = (pos)->
       $scope.selectedLeaderRow = pos
@@ -100,6 +137,6 @@ angular.module('prejuiceUiApp')
       return leaders[leaderPosition-1]
       
     $scope.getLeaderPercentage = (leaderPosition)->
-      return (100 - (leaderPosition * 10)) + '-' + (100 - ((leaderPosition-1) * 10)) + '%'
+      return (100 - ((leaderPosition-1) * 10)) + '-' + (100 - (leaderPosition * 10)) + '%'
     
   ]

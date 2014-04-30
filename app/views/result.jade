@@ -1,142 +1,158 @@
-.result
-  div
+.result(style='margin-top:20px')
+  div.hide
     .col-xs-12
       h1.white Din fördomsprofil
-  div
-    .col-xs-12.card
-      .col-xs-12.chart-overlay-container
-        .col-xs-3.chart-overlay
-          p.center Invandring
-        .col-xs-3.chart-overlay
-          p.center Bidragsfusk
-        .col-xs-3.chart-overlay
-          p.center Jämställdhet
-        .col-xs-3.chart-overlay
-          p.center Klyftor
-      div.chart-container
-        figure#result-chart(pj-chart, data='chart')
-      .col-xs-12.chart-x-axis
-        .col-xs-1.chart-x-axis-item 1
-        .col-xs-1.chart-x-axis-item 2
-        .col-xs-1.chart-x-axis-item 3
-        .col-xs-1.chart-x-axis-item 4
-        .col-xs-1.chart-x-axis-item 5
-        .col-xs-1.chart-x-axis-item 6
-        .col-xs-1.chart-x-axis-item 7
-        .col-xs-1.chart-x-axis-item 8
-        .col-xs-1.chart-x-axis-item 9
-        .col-xs-1.chart-x-axis-item 10
-        .col-xs-1.chart-x-axis-item 11
-        .col-xs-1.chart-x-axis-item 12
-      hr
-      .col-xs-12
-        p(style='font-size:20px;') {{hoverQuestion}}
-      .col-xs-12
-        p Ditt svar: {{hoverMyAnswer}} {{hoverRangeUnit}}
-      .col-xs-12
-        p Rätt svar: {{hoverCorrect}} {{hoverRangeUnit}}
-      .col-xs-12
-        p Andras genomsnittssvar: {{hoverAverage}} {{hoverRangeUnit}}
-      .col-xs-12
-        p Din fördomsfaktor: {{hoverMyScore}} %
-      .col-xs-12
-        p Andras fördomsfaktor: {{hoverOverall}} %
-    
-  div
-    .col-xs-12.card.prejudice-factor
-      h2 Din fördomsfaktor är
-      p
-        | {{totalPercentage}}
-        span %
-      h3 Du är fördomsfull som
-      i.fa.fa-arrow-down(style='font-size:80px;')
-      
-    .col-xs-12.card-empty.leader-list
-      .prejudice-scale-container
-        .prejudice-scale-row.col-xs-12(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
-          span.badge {{i}}
-          div(ng-show='i == selectedLeaderRow')
-            //selected row
-            .col-xs-3.leader-img
-              img(ng-src='{{getLeader(i).img}}')
-            .col-xs-9.leader-data
-              h4
-                | {{getLeader(i).name}}
-              span.leader-percentage {{getLeaderPercentage(i)}}
-              h6
-                i.fa.fa-star 
-                |  {{getLeader(i).birth}}
-              h6 {{getLeader(i).title}}
-            .col-xs-12.quote
-              blockquote "{{getLeader(i).quote}}"
-              p.leader-source
-                | - {{getLeader(i).source}}
-                br
-                a(href='{{getLeader(i).more}}', target='_blank')
-                  | Mer om {{getLeader(i).name}}
-                  i.fa.fa-caret-right(style='padding-left:4px;')
-          div(ng-show='i != selectedLeaderRow')
-            .col-xs-3.leader-img
-              img.leader(ng-src='{{getLeader(i).img}}')
-            .col-xs-8.leader-data(style='position:relative;')
-              h4
-                | {{getLeader(i).name}}
-              span.leader-percentage {{getLeaderPercentage(i)}}
-              h6
-                i.fa.fa-star 
-                |  {{getLeader(i).birth}}
-              h6 {{getLeader(i).title}}
-    
-  div(ng-controller='shareCtrl')
-    .col-xs-12.card
-      .col-xs-6
-        h3 Dela med dina vänner
-      .col-xs-2
-        h3
-          a(href='', ng-click='getLoginStatus()')
-            i.fa.fa-facebook
-      .col-xs-2
-        h3
-          a(href='{{tweetLink}}', target='_blank')
-            i.fa.fa-twitter
-      .col-xs-2
-        h3
-          i.fa.fa-link
-    .col-xs-12.card.hide
-      p logged in: {{loggedIn}}
-      p name: {{user.name}}
-      p gender: {{user.gender}}
+  div(ng-switch='resultsReady')
+    div(ng-switch-when='false')
+      .col-xs-12.card
+        h4(style='text-align:center;') Hämtar fördomsprofil...
 
-  div
-    .col-xs-12.card
-      .col-xs-6
-        h4 Så räknar vi
-        ul.howwecalc
-          li Ju mer fel du har på en fråga, desto större utslag på din fördomsfaktor.
-          li Frågorna är dock också viktade efter hur fel andra som gjort testet har.
-          li Ju mer fel folk har i allmänhet, desto större vikt fäster vi vid frågan.
-          li Om du har mycket fel på en fråga där andra har haft mycket fel ger det med andra ord stort utslag på din fördomsfaktor.
-          li Om du tvärtom har nästan rätt på en fråga där andra har mycket fel, ja då är du på god väg mot ett gott resultat!
-      .col-xs-6
-        h4 Källor
-        p.sources Alla faktauppgifter som ligger till grund för testet är hämtade från svenska myndigheter.
-        h5.sources Fördom 1: Invandring och kriminalitet
-        ul.sources
-          li
-            a(href='http://www.bra.se/download/18.cba82f7130f475a2f1800012697/2005_17_brottslighet_bland_personer_fodda_sverige_och_utlandet.pdf', target='_blank') Brottsförebyggande rådet, BRÅ, 2005:17
-        h5.sources Fördom 2: Bidragsfusk
-        ul.sources
-          li
-            a(href='http://www.esv.se/PageFiles/1511/gemensam-skrivelse.pdf', target='_blank') Ekonomistyrningsverket, ESV, 2011:11
-        h5.sources Fördom 3: Jämställdhet
-        ul.sources
-          li
-            a(href='http://www.scb.se/sv_/Hitta-statistik/Statistikdatabasen/Variabelvaljare/?px_tableid=ssd_extern%3aLonStandVagdYrk&rxid=6c156e05-e761-4758-bd45-7ead42a3538c', target='_blank') Statistiska centralbyrån, SCB, SSYK 2012
-          li
-            a(href='http://www.mi.se/files/PDF-er/att_bestalla/loneskillnader/skillnaden12.pdf', target='_blank') Medlingsinstitutet, MI, 2012
-        h5.sources Fördom 4: Ökande klyftor
-        ul.sources
-          li
-            a(href='http://www.scb.se/sv_/Hitta-statistik/Statistik-efter-amne/Hushallens-ekonomi/Inkomster-och-inkomstfordelning/Hushallens-ekonomi-HEK/7289/7296/Inkomster-19752011/163550/', target='_blank') Statistiska centralbyrån, SCB, HEK Inkomstfördelning 1975-2011
+    div(ng-switch-when='true')
+      
+      .col-xs-12.card.prejudice-factor
+        .col-xs-12
+          h2 Din fördomsfaktor är
+          p.huge
+            | {{totalPercentage}}
+            span %
+          h3 Du är fördomsfull som
+        .col-xs-12
+          img#resultLeaderImage(ng-src='{{getLeader(leaderTypePosition).img}}')
+        .col-xs-12
+          p {{getLeader(leaderTypePosition).name}}
+        i.fa.fa-arrow-down(style='font-size:80px')
+  
+      .col-xs-12.result-container-header.universe
+        h2 Vårt fördomsuniversum
+      .col-xs-12.card-empty.leader-list
+        .prejudice-scale-container
+          .prejudice-scale-row.col-xs-12(ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]', ng-class='getRowClass(i)', ng-click='selectLeaderRow(i)')
+            div(ng-show='i == selectedLeaderRow')
+              //selected row
+              .col-xs-2.leader-img
+                span.badge {{i}}
+                img(ng-src='{{getLeader(i).img}}')
+              .col-xs-10.leader-data
+                h4
+                  | {{getLeader(i).name}}
+                span.leader-percentage {{getLeaderPercentage(i)}}
+                h6
+                  i.fa.fa-star 
+                  |  {{getLeader(i).birth}}
+                h6 {{getLeader(i).title}}
+              .col-xs-12.quote
+                blockquote "{{getLeader(i).quote}}"
+                p.leader-source
+                  | - {{getLeader(i).source}}
+                  br
+                  a(href='{{getLeader(i).more}}', target='_blank')
+                    | Mer om {{getLeader(i).name}}
+                    i.fa.fa-caret-right(style='padding-left:4px;')
+            div(ng-show='i != selectedLeaderRow')
+              .col-xs-2.leader-img
+                span.badge {{i}}
+                img.leader(ng-src='{{getLeader(i).img}}')
+              .col-xs-10.leader-data(style='position:relative;')
+                h4
+                  | {{getLeader(i).name}}
+                span.leader-percentage {{getLeaderPercentage(i)}}
+                h6
+                  i.fa.fa-star 
+                  |  {{getLeader(i).birth}}
+                h6 {{getLeader(i).title}}
+
+      .col-xs-12.result-container-header
+        h2 Fördomsstatistik
+      .col-xs-12.card.question-stats
+        .col-xs-12.chart-overlay-container
+          .col-xs-3.chart-overlay
+            p.center Invandring
+          .col-xs-3.chart-overlay
+            p.center Bidragsfusk
+          .col-xs-3.chart-overlay
+            p.center Jämställdhet
+          .col-xs-3.chart-overlay
+            p.center Klyftor
+        div.chart-container
+          figure#result-chart(pj-chart, data='chart', created='chartCreated()')
+        .col-xs-12.chart-x-axis
+          .col-xs-1.chart-x-axis-item 1
+          .col-xs-1.chart-x-axis-item 2
+          .col-xs-1.chart-x-axis-item 3
+          .col-xs-1.chart-x-axis-item 4
+          .col-xs-1.chart-x-axis-item 5
+          .col-xs-1.chart-x-axis-item 6
+          .col-xs-1.chart-x-axis-item 7
+          .col-xs-1.chart-x-axis-item 8
+          .col-xs-1.chart-x-axis-item 9
+          .col-xs-1.chart-x-axis-item 10
+          .col-xs-1.chart-x-axis-item 11
+          .col-xs-1.chart-x-axis-item 12
+        
+        .col-xs-12(style='margin-top:20px;margin-bottom:10px;').center
+          p(style='font-size:20px;') {{hoverQuestion}}
+        .col-xs-2.center
+          p.soft Ditt svar
+          p.bold {{hoverMyAnswer}} {{hoverRangeUnit}}
+        .col-xs-2.center
+          p.soft Rätt svar
+          p.bold {{hoverCorrect}} {{hoverRangeUnit}}
+        .col-xs-2.center
+          p.soft Andras svar
+          p.bold {{hoverAverage}} {{hoverRangeUnit}}
+        .col-xs-3.center
+          p.soft Din fördomsfaktor
+          p.bold {{hoverMyScore}} %
+        .col-xs-3.center
+          p.soft Andras fördomsfaktor
+          p.bold {{hoverOverall}} %
+
+      div(ng-controller='shareCtrl')
+        .col-xs-12.card
+          .col-xs-6
+            h3 Dela med dina vänner
+          .col-xs-2
+            h3
+              a(href='', ng-click='getLoginStatus()')
+                i.fa.fa-facebook
+          .col-xs-2
+            h3
+              a(href='{{tweetLink}}', target='_blank')
+                i.fa.fa-twitter
+          .col-xs-2
+            h3
+              i.fa.fa-link
+
+      div
+        .col-xs-12.card
+          .col-xs-6
+            h4 Så räknar vi
+            ul.howwecalc
+              li Ju mer fel du har på en fråga, desto större utslag på din fördomsfaktor.
+              li Frågorna är dock också viktade efter hur fel andra som gjort testet har.
+              li Ju mer fel folk har i allmänhet, desto större vikt fäster vi vid frågan.
+              li Om du har mycket fel på en fråga där andra har haft mycket fel ger det med andra ord stort utslag på din fördomsfaktor.
+              li Om du tvärtom har nästan rätt på en fråga där andra har mycket fel, ja då är du på god väg mot ett gott resultat!
+          .col-xs-6
+            h4 Källor
+            p.sources Alla faktauppgifter som ligger till grund för testet är hämtade från svenska myndigheter.
+            h5.sources Fördom 1: Invandring och kriminalitet
+            ul.sources
+              li
+                a(href='http://www.bra.se/download/18.cba82f7130f475a2f1800012697/2005_17_brottslighet_bland_personer_fodda_sverige_och_utlandet.pdf', target='_blank') Brottsförebyggande rådet, BRÅ, 2005:17
+            h5.sources Fördom 2: Bidragsfusk
+            ul.sources
+              li
+                a(href='http://www.esv.se/PageFiles/1511/gemensam-skrivelse.pdf', target='_blank') Ekonomistyrningsverket, ESV, 2011:11
+            h5.sources Fördom 3: Jämställdhet
+            ul.sources
+              li
+                a(href='http://www.scb.se/sv_/Hitta-statistik/Statistikdatabasen/Variabelvaljare/?px_tableid=ssd_extern%3aLonStandVagdYrk&rxid=6c156e05-e761-4758-bd45-7ead42a3538c', target='_blank') Statistiska centralbyrån, SCB, SSYK 2012
+              li
+                a(href='http://www.mi.se/files/PDF-er/att_bestalla/loneskillnader/skillnaden12.pdf', target='_blank') Medlingsinstitutet, MI, 2012
+            h5.sources Fördom 4: Ökande klyftor
+            ul.sources
+              li
+                a(href='http://www.scb.se/sv_/Hitta-statistik/Statistik-efter-amne/Hushallens-ekonomi/Inkomster-och-inkomstfordelning/Hushallens-ekonomi-HEK/7289/7296/Inkomster-19752011/163550/', target='_blank') Statistiska centralbyrån, SCB, HEK Inkomstfördelning 1975-2011
 
 

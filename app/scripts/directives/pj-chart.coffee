@@ -4,6 +4,7 @@ angular.module('prejuiceUiApp')
   .directive 'pjChart', ["$rootScope", ($rootScope) ->
     scope:
       data: '='
+      callback: '&created'
     link: (scope, elm, attrs) ->
 
       chartData = scope.data
@@ -14,6 +15,7 @@ angular.module('prejuiceUiApp')
         if !chartCreated and chartData.data.main[0].data.length > 1  and chartData.data.comp[0].data.length > 1
           chartCreated = true
           myChart = new xChart('bar', chartData.data, '#result-chart', chartData.options)
+          scope.callback()
           
           
       scope.$watch generateChart
