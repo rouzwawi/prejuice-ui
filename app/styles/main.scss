@@ -811,3 +811,21 @@ hr {
       font-size: 20px;
     }
 }
+
+@media screen and (max-width: 768px) {
+  .prejudice-scale-row .badge, .prejudice-scale-row.active .badge {
+    left: -9%;
+  }
+  
+  .prejudice-scale-row.selected-and-active .badge, .prejudice-scale-row.selected .badge {
+    left: -9%;
+  }
+  
+  .prejudice-scale-row .leader-data, .prejudice-scale-row.active .leader-data {
+    padding-left:26px;
+  }
+  
+  .prejudice-scale-row.selected-and-active .leader-data, .prejudice-scale-row.selected .leader-data {
+    padding-left:26px;
+  }
+}
