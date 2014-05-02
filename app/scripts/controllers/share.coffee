@@ -54,7 +54,7 @@ angular.module('prejuiceUiApp')
     $scope.fbShare = ()->
       Facebook.ui
         method: 'feed'
-        link: 'http://fordomstestet.se/#/' + userToken
+        link: $scope.shareLinkClean
         caption: $scope.shareText
       , (response)->
         #console.log 'shared', response
