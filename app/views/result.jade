@@ -8,7 +8,6 @@
         h4(style='text-align:center;') Hämtar fördomsprofil...
 
     div(ng-switch-when='true')
-      
       .col-xs-12.card.prejudice-factor
         .col-xs-12
           h2 Din fördomsfaktor är
@@ -121,7 +120,11 @@
                 i.fa.fa-twitter
           .col-xs-2
             h3
-              i.fa.fa-link
+              a(href='', data-toggle='collapse', data-target='#share-link-expander')
+                i.fa.fa-link(ng-click='copyClipboard()')
+          .col-xs-12.collapse#share-link-expander
+            .share-link-container
+              textarea.share-link(select-on-click) {{shareLinkClean}}
 
       div
         .col-xs-12.card

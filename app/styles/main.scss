@@ -428,6 +428,29 @@ body {
   border-radius: 6px;
 }
 
+#share-link-expander {
+  text-align: right;
+}
+
+.share-link-container {
+  display: inline-block;
+  width: 230px;
+  background-color: #eee;
+  border-radius: 15px;
+  margin-right: 4.5em;
+}
+
+.share-link-container textarea {
+  resize: none;
+  border: none;
+  overflow: hidden;
+  background-color: transparent;
+  height: 1.7em;
+  width: 100%;
+  margin: 5px;
+  font-weight: normal;
+}
+
 li.facts {
   margin-bottom:12px;
 }
