@@ -102,10 +102,17 @@ angular.module('prejuiceUiApp')
         m.parentNode.insertBefore a, m
         return
       ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
+      
+      ### 
+      Local testing
+      ga "create", "UA-50452169-1",
+        cookieDomain: "none"
+      ###
+
       ga "create", "UA-50452169-1", "fordomstestet.se"
       ga "send", "pageview"
+      ga "send", "event", "Fordomstestet", document.title
 
-      #console.log 'Google Analytics triggered, passed: ' + document.title
     
     $scope.startQuiz = ()->
       $scope.quizState = 'running'
@@ -146,27 +153,8 @@ angular.module('prejuiceUiApp')
         $window.scrollTo 0, 0
 
         #Google Analytics
-        ((i, s, o, g, r, a, m) ->
-          i["GoogleAnalyticsObject"] = r
-          i[r] = i[r] or ->
-            (i[r].q = i[r].q or []).push arguments
-            return
+        ga "send", "event", "Fordomstestet", document.title
 
-
-          i[r].l = 1 * new Date()
-
-          a = s.createElement(o)
-          m = s.getElementsByTagName(o)[0]
-
-          a.async = 1
-          a.src = g
-          m.parentNode.insertBefore a, m
-          return
-        ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
-        ga "create", "UA-50452169-1", "fordomstestet.se"
-        ga "send", "pageview"
-
-        #console.log 'Google Analytics triggered, passed: ' + document.title
       else
         document.title = 'Fördomstestet: Din fördomsprofil'
         API.answers.save

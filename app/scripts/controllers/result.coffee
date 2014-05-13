@@ -161,9 +161,15 @@ angular.module('prejuiceUiApp')
       m.parentNode.insertBefore a, m
       return
     ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
+    
+    ### 
+    Local testing
+    ga "create", "UA-50452169-1", 
+      cookieDomain: "none"
+    ###
+
     ga "create", "UA-50452169-1", "fordomstestet.se"
     ga "send", "pageview"
-
-    #console.log 'Google Analytics triggered, passed: ' + document.title
+    ga "send", "event", "Fordomstestet", document.title
     
   ]
