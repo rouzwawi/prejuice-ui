@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('prejuiceUiApp')
-  .controller 'ResultCtrl', ['$scope', '$routeParams', 'API', 'Alert', ($scope, $routeParams, API, Alert) ->
+  .controller 'ResultCtrl', ['$scope', '$routeParams', 'API', 'Alert', 'User', ($scope, $routeParams, API, Alert, User) ->
     
     $scope.resultsReady = false
     
@@ -135,13 +135,14 @@ angular.module('prejuiceUiApp')
       else if $scope.leaderTypePosition == pos
         return 'active'
       return ''
-    
+
     $scope.getLeader = (leaderPosition)->
       return leaders[leaderPosition-1]
-      
-    $scope.getLeaderPercentage = (leaderPosition)->
 
+    $scope.getLeaderPercentage = (leaderPosition)->
       return (100 - (leaderPosition * 10)) + '-' + (100 - ((leaderPosition-1) * 10)) + '%'
+
+    $scope.showShare = User.hasTakenTest()
 
     #Google Analytics
     ((i, s, o, g, r, a, m) ->
@@ -149,7 +150,6 @@ angular.module('prejuiceUiApp')
       i[r] = i[r] or ->
         (i[r].q = i[r].q or []).push arguments
         return
-
 
       i[r].l = 1 * new Date()
 

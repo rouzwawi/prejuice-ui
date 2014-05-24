@@ -166,6 +166,7 @@ angular.module('prejuiceUiApp')
           Alert.add 'error', 'Could not post answers (' + err.status + ')'
     
     $scope.showResult = ()->
+      User.setTakenTest(true)
       $location.path(User.getUserToken());
     
   ]

@@ -106,7 +106,7 @@
           p.soft Andras fördoms-faktor
           p.bold {{hoverOverall}} %
 
-      div(ng-controller='shareCtrl')
+      div(ng-controller='shareCtrl', ng-if='showShare')
         .col-xs-12.card
           .col-xs-6
             h3 Dela med dina vänner
@@ -125,6 +125,10 @@
           .col-xs-12.collapse#share-link-expander
             .share-link-container
               textarea.share-link(select-on-click) {{shareLinkClean}}
+
+      div(ng-if='!showShare')
+        .col-xs-12.card
+          h3(style='text-align: center;'): a(href='http://fordomstestet.se') Testa dig själv
 
       div
         .col-xs-12.card
