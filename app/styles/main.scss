@@ -100,6 +100,10 @@ body {
   cursor: pointer;
 }
 
+.prejuice .in-depth-container li {
+  margin-top: 5px;
+}
+
 .prejuice .sub-question .slider {
   margin-top: 53px;
   width:92% !important;
@@ -339,6 +343,10 @@ body {
 .sub-question .slider .tooltip.min-range {
   margin-left: -46px;
   margin-top: -27px;
+}
+
+.sub-question .slider .tooltip.min-range .tooltip-arrow {
+  display: none;
 }
 
 .sub-question .slider .tooltip.max-range {
