@@ -111,7 +111,7 @@ angular.module('prejuiceUiApp')
 
       ga "create", "UA-50452169-1", "fordomstestet.se"
       ga "send", "pageview"
-      ga "send", "event", "Fordomstestet", document.title
+      ga "send", "event", document.title, "pageview"
 
     
     $scope.startQuiz = ()->
@@ -153,7 +153,7 @@ angular.module('prejuiceUiApp')
         $window.scrollTo 0, 0
 
         #Google Analytics
-        ga "send", "event", "Fordomstestet", document.title
+        ga "send", "event", document.title, "pageview"
 
       else
         document.title = 'Fördomstestet: Din fördomsprofil'
