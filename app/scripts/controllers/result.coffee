@@ -142,7 +142,7 @@ angular.module('prejuiceUiApp')
     $scope.getLeaderPercentage = (leaderPosition)->
       return (100 - (leaderPosition * 10)) + '-' + (100 - ((leaderPosition-1) * 10)) + '%'
 
-    $scope.showShare = !User.hasTakenTest()
+    $scope.showShare = User.hasTakenTest()
 
     #Google Analytics
     ((i, s, o, g, r, a, m) ->
