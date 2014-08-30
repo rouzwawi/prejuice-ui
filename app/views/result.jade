@@ -107,20 +107,20 @@
             p.bold {{hoverOverall}} %
 
       div(ng-controller='shareCtrl', ng-if='showShare')
-        .col-xs-12.card
+        .col-xs-12.card.share
           .col-xs-6
             h3 Dela med dina vänner
           .col-xs-2
             h3
-              a(href='', ng-click='getLoginStatus()')
+              button(ng-click='getLoginStatus()'): a(href='')
                 i.fa.fa-facebook
           .col-xs-2
             h3
-              a(href='{{tweetLink}}', target='_blank')
+              button: a(href='{{tweetLink}}', target='_blank')
                 i.fa.fa-twitter
           .col-xs-2
             h3
-              a(href='', data-toggle='collapse', data-target='#share-link-expander')
+              button(data-toggle='collapse', data-target='#share-link-expander'): a(href='')
                 i.fa.fa-link(ng-click='copyClipboard()')
           .col-xs-12.collapse#share-link-expander
             .share-link-container
