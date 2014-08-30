@@ -52,10 +52,15 @@ angular.module('prejuiceUiApp')
           $scope.fbShare()
 
     $scope.fbShare = ()->
-      Facebook.ui
-        method: 'feed'
-        link: $scope.shareLinkClean
-        caption: $scope.shareText
-      , (response)->
-        #console.log 'shared', response
+      if window.mobilecheck()
+        # alert 'on mobile'
+        window.location = 'https://www.facebook.com/sharer/sharer.php?u=' + $scope.shareLink
+      else
+        # alert 'sharing'
+        Facebook.ui
+          method: 'share'
+          href: $scope.shareLinkClean
+          redirect_uri: 'http://www.facebook.com'
+        , (response)->
+          #console.log 'shared', response
   ]

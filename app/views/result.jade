@@ -60,51 +60,51 @@
                   |  {{getLeader(i).birth}}
                 h6 {{getLeader(i).title}}
 
-      .col-xs-12.result-container-header
-        h2 Din fördomsprofil
       .col-xs-12.card.question-stats
-        .col-xs-12.chart-overlay-container
-          .col-xs-3.chart-overlay
-            p.center Invandring
-          .col-xs-3.chart-overlay
-            p.center Bidragsfusk
-          .col-xs-3.chart-overlay
-            p.center Jämställdhet
-          .col-xs-3.chart-overlay
-            p.center Klyftor
-        div.chart-container
-          figure#result-chart(pj-chart, data='chart', created='chartCreated()')
-        .col-xs-12.chart-x-axis
-          .col-xs-1.chart-x-axis-item 1
-          .col-xs-1.chart-x-axis-item 2
-          .col-xs-1.chart-x-axis-item 3
-          .col-xs-1.chart-x-axis-item 4
-          .col-xs-1.chart-x-axis-item 5
-          .col-xs-1.chart-x-axis-item 6
-          .col-xs-1.chart-x-axis-item 7
-          .col-xs-1.chart-x-axis-item 8
-          .col-xs-1.chart-x-axis-item 9
-          .col-xs-1.chart-x-axis-item 10
-          .col-xs-1.chart-x-axis-item 11
-          .col-xs-1.chart-x-axis-item 12
-        
-        .col-xs-12(style='margin-top:20px;margin-bottom:10px;').center
-          p(style='font-size:20px;') {{hoverQuestion}}
-        .col-xs-2.center
-          p.soft Ditt svar
-          p.bold {{hoverMyAnswer}} {{hoverRangeUnit}}
-        .col-xs-2.center
-          p.soft Rätt svar
-          p.bold {{hoverCorrect}} {{hoverRangeUnit}}
-        .col-xs-2.center
-          p.soft Andras svar
-          p.bold {{hoverAverage}} {{hoverRangeUnit}}
-        .col-xs-3.center
-          p.soft Din fördoms-faktor
-          p.bold {{hoverMyScore}} %
-        .col-xs-3.center
-          p.soft Andras fördoms-faktor
-          p.bold {{hoverOverall}} %
+        .col-xs-12.result-container-header
+          h2 Din fördomsprofil
+        .col-xs-12
+          .col-xs-12.chart-overlay-container
+            .col-xs-3.chart-overlay
+              p.center Invandring
+            .col-xs-3.chart-overlay
+              p.center Bidragsfusk
+            .col-xs-3.chart-overlay
+              p.center Jämställdhet
+            .col-xs-3.chart-overlay
+              p.center Klyftor
+          div.chart-container
+            figure#result-chart(pj-chart, data='chart', created='chartCreated()')
+          .col-xs-12.chart-x-axis
+            .col-xs-1.chart-x-axis-item 1
+            .col-xs-1.chart-x-axis-item 2
+            .col-xs-1.chart-x-axis-item 3
+            .col-xs-1.chart-x-axis-item 4
+            .col-xs-1.chart-x-axis-item 5
+            .col-xs-1.chart-x-axis-item 6
+            .col-xs-1.chart-x-axis-item 7
+            .col-xs-1.chart-x-axis-item 8
+            .col-xs-1.chart-x-axis-item 9
+            .col-xs-1.chart-x-axis-item 10
+            .col-xs-1.chart-x-axis-item 11
+            .col-xs-1.chart-x-axis-item 12
+          .col-xs-12(style='margin-top:20px;margin-bottom:10px;').center
+            p(style='font-size:20px;') {{hoverQuestion}}
+          .col-xs-2.center
+            p.soft Ditt svar
+            p.bold {{hoverMyAnswer}} {{hoverRangeUnit}}
+          .col-xs-2.center
+            p.soft Rätt svar
+            p.bold {{hoverCorrect}} {{hoverRangeUnit}}
+          .col-xs-2.center
+            p.soft Andras svar
+            p.bold {{hoverAverage}} {{hoverRangeUnit}}
+          .col-xs-3.center
+            p.soft Din fördoms-faktor
+            p.bold {{hoverMyScore}} %
+          .col-xs-3.center
+            p.soft Andras fördoms-faktor
+            p.bold {{hoverOverall}} %
 
       div(ng-controller='shareCtrl', ng-if='showShare')
         .col-xs-12.card
