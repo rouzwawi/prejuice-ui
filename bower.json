@@ -14,7 +14,7 @@
     "angular-route": "latest",
     "angular-touch": "latest",
     "angular-facebook": "latest",
-    "seiyria-bootstrap-slider": "latest",
+    "seiyria-bootstrap-slider": "3.1.0",
     "angular-animate": "latest"
   },
   "devDependencies": {
