@@ -37,19 +37,19 @@
                   .tooltip-inner
                     .span.tooltip-help-text {{activeStep.question.subQuestions[$index].minRange}}
                     | {{activeStep.question.subQuestions[$index].rangeUnit}}
-              .slider-handle.round.answer(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}};')
+              .slider-handle.round.answer(ng-style="{'left': getDotPosition(activeStep.question.subQuestions[$index], stat.myAnswer)}")
                 .tooltip.top.in.answer(style='top: -47px !important;')
                   .tooltip-arrow
                   .tooltip-inner
                     .span.tooltip-help-text Ditt Svar
                     | {{stat.myAnswer}}
-              .slider-handle.round.average(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.average)}};')
+              .slider-handle.round.average(ng-style="{'left': getDotPosition(activeStep.question.subQuestions[$index], stat.average)}")
                 .tooltip.bottom.in.average(style='top: 17px !important;')
                   .tooltip-arrow
                   .tooltip-inner
                     .span.tooltip-help-text Andras medelsvar
                     | {{roundNumber(stat.average,1)}}
-              .slider-handle.round.correct(style='left: {{getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}};')
+              .slider-handle.round.correct(ng-style="{'left': getDotPosition(activeStep.question.subQuestions[$index], stat.correct)}")
                 .tooltip.bottom.in.correct(style='top: 17px !important;')
                   .tooltip-arrow
                   .tooltip-inner
