@@ -854,6 +854,11 @@ hr {
 }
 
 @media screen and (max-width: 768px) {
+  .sub-question form.center {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
   .prejudice-scale-row .badge, .prejudice-scale-row.active .badge {
     left: -9%;
   }
