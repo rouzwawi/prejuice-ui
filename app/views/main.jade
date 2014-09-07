@@ -1,4 +1,5 @@
 .main
+  #fb-root
   div(ng-switch='quizState', ng-animate='slide')
 
     .row(ng-switch-when='ready')
@@ -16,6 +17,8 @@
           | .
         p.center(style='margin-top:20px')
           button.btn.btn-lg.btn-prejuice#startQuizButton(ng-click='startQuiz()', ng-disabled='quizReadyToStart == false') {{quizReadyToStart | iif : "Starta testet!" : "Laddar testet..."}}
+        p.center(style='margin-top:20px')
+          .fb-like(data-href='http://www.fordomstestet.se', data-width='200', data-layout='button_count', data-action='like', data-show-faces='true', data-share='true')
       
     .row(ng-switch-when='running')
       .col-md-12
