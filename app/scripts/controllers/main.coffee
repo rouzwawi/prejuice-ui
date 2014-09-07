@@ -2,57 +2,65 @@
 
 angular.module('prejuiceUiApp')
   .controller 'MainCtrl', ['$rootScope', '$sce', '$scope', '$location', '$window','User', 'API', 'Alert', ($rootScope, $sce, $scope, $location, $window, User, API, Alert) ->
-    
+
     $scope.quizReadyToStart = false
     $scope.quizState = 'ready'
-    
+
     $scope.steps = []
     $scope.activeStepIndex = 0
     $scope.activeStep = null
-    
+
     $scope.categoryIndex = 1
     $scope.progressPercentage = 0
-    
+
     $scope.activeAnswerValue = 0
 
+    createdQuestions = false
     answers = {}
-    
+
     updateProgress = ()->
       percentage = ($scope.activeStepIndex / $scope.steps.length)
       $scope.progressPercentage = Number(percentage*100).toFixed(0)
       
       $scope.categoryIndex = Number(Math.floor(percentage*4+1)).toFixed(0)
-    
+
     $scope.getIntroNextText = ()->
       if $scope.activeStepIndex < 3
         return 'Första frågan!'
       return 'Nästa fråga'
-      
+
     $scope.getOutroNextText = ()->
       if $scope.activeStepIndex > 18
         return 'Kalkylera fördomsprofil'
       return 'Nästa fördom!'
-    
+
     $scope.roundNumber = (num, dec)->
       Number(num).toFixed(dec)
-      
+
     $scope.getDotPosition = (question, val)->
-      result = ( (val - question.minRange) / (question.maxRange - question.minRange) ) * 100 + "%"
-    
+      ( (val - question.minRange) / (question.maxRange - question.minRange) ) * 100 + "%"
+
     $scope.onQuestionSliderValueUpdated = (val)->
       $scope.$apply ()->
         if $scope.activeAnswerValue != val
           $scope.activeAnswerValue = val
-    
-    $rootScope.$on 'LOGGED_IN', ()->
+
+    getQuestions = ()->
       questionsObj = API.questions.get (res)->
         createSteps questionsObj.questions
       , (err)->
         Alert.add 'error', 'Could not get questions (' + err.status + ')'
-    
+
+    $rootScope.$on 'LOGGED_IN', getQuestions
+
+    # just trigger this in case we missed the LOGGED_IN event
+    getQuestions()
+
     createSteps = (questions)->
+      return unless !createdQuestions
+      createdQuestions = true
       steps = []
-      
+
       for question in questions
         question.categorySafe = $sce.trustAsHtml(question.category)
 
@@ -61,7 +69,7 @@ angular.module('prejuiceUiApp')
           type: 'questionIntro'
           question: question
         #console.log question
-        
+
         #sub questions
         for subQuestion in question.subQuestions
           subQuestion.questionSafe = $sce.trustAsHtml(subQuestion.question)
@@ -75,7 +83,7 @@ angular.module('prejuiceUiApp')
         steps.push
           type: 'questionOutro'
           question: question
-      
+
       $scope.steps = steps
       $scope.activeStepIndex = -1
       $scope.quizReadyToStart = true
