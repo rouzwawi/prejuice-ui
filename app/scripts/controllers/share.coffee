@@ -60,7 +60,6 @@ angular.module('prejuiceUiApp')
         Facebook.ui
           method: 'share'
           href: $scope.shareLinkClean
-          redirect_uri: 'http://www.facebook.com'
         , (response)->
           #console.log 'shared', response
   ]
